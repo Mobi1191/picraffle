@@ -49,11 +49,11 @@ $active_group = 'default';
 $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'root';
-$db['default']['password'] = '';
+// $db['default']['username'] = 'root';
+// $db['default']['password'] = '';
 
-// $db['default']['username'] = 'pic_user_db';
-// $db['default']['password'] = 'Rubbystar123!';
+$db['default']['username'] = 'pic_user_db';
+$db['default']['password'] = 'Rubbystar123!';
 
 $db['default']['database'] = 'picraffle';
 $db['default']['dbdriver'] = 'mysqli';
