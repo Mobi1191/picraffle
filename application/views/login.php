@@ -68,7 +68,7 @@
             </div><!-- /.col -->
             <div class="col-xs-12">
               <input type="submit" class="btn btn-primary btn-block btn-flat" value="Sign In" />
-               <a  class="btn btn-success btn-block btn-flat" href="<?=base_url('signup')?>">Sign</a>
+               <a  class="btn btn-success btn-block btn-flat" href="<?=base_url('signup')?>">SignUp</a>
             </div><!-- /.col -->
           </div>
         </form>
