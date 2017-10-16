@@ -82,6 +82,7 @@
             </div><!-- /.col -->
             <div class="col-xs-12">
               <input type="submit" class="btn btn-success btn-block btn-flat" value="Register" />
+               <a href="<?=base_url()?>" class="btn btn-default btn-block btn-flat">Go To Login</a>
             </div><!-- /.col -->
           </div>
         </form>

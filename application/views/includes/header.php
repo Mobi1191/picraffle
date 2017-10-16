@@ -102,9 +102,9 @@
               </a>
             </li>
             <li class="treeview">
-              <a href="#" >
-                <i class="fa fa-ticket"></i>
-                <span>My Tasks</span>
+              <a href="<?=base_url('customer/myprofile')?>" >
+                <i class="fa fa-user"></i>
+                <span>My Profile</span>
               </a>
             </li>
             <?php

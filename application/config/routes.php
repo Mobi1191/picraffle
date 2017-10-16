@@ -72,3 +72,6 @@ $route['createPasswordUser'] = "login/createPasswordUser";
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
+
+$route['customer/myprofile'] = 'customer/profile';
+$route['customer/editmyprofile'] = 'customer/editprofile';
