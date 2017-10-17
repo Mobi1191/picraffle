@@ -118,9 +118,9 @@
               </a>
             </li>
             <li class="treeview">
-              <a href="#" >
+              <a href="<?=base_url('admin/contests')?>" >
                 <i class="fa fa-upload"></i>
-                <span>Task Uploads</span>
+                <span>Contests</span>
               </a>
             </li>
             <?php
