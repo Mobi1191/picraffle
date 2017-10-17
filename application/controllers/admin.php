@@ -22,6 +22,7 @@ class Admin extends BaseController
     public function contests()
     {
     	$this->global['pageTitle'] = 'Admin : Contests';
+        $this->global['all_contests'] = $this->contest_model->getAllContest();
         $this->loadViews("admin/contests", $this->global, NULL , NULL);
     }
 
