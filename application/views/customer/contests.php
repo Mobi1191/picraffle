@@ -2,7 +2,7 @@
 	<section class="content-header">
       <h1>
         <i class="fa fa-tachometer" aria-hidden="true"></i> Contests
-        <a href="<?=base_url('admin/todaycontest')?>" class="btn btn-success">Today's Contest</a>
+        <a href="<?=base_url('customer/todaycontest')?>" class="btn btn-success">Today's Contest</a>
       </h1>
     </section>
     
@@ -52,7 +52,7 @@ title="Enter a date in this format YYYY-MM-DD" class="form-control input-sm pull
                     			<td><?=$contest->prize?></td>
                     			<td><?=$contest->owner?></td>
                     			<td><?=$contest->owner_ticket?></td>
-                    			<td><a class="btn btn-sm btn-info" href="<?php echo base_url().'admin/viewcontest/'.$contest->id; ?>"><i class="fa fa-pencil"></i></a></td>
+                    			<td><a class="btn btn-sm btn-info" href="<?php echo base_url().'customer/viewcontest/'.$contest->id; ?>"><i class="fa fa-calendar-o"></i></a></td>
                     		</tr>
                     <?php
                         }

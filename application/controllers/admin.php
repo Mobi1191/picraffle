@@ -22,7 +22,7 @@ class Admin extends BaseController
     public function contests()
     {
     	$this->global['pageTitle'] = 'Admin : Contests';
-        $this->global['all_contests'] = $this->contest_model->getAllContest();
+        $this->global['all_contests'] = $this->contest_model->getAllContests();
         $this->loadViews("admin/contests", $this->global, NULL , NULL);
     }
 
@@ -40,6 +40,22 @@ class Admin extends BaseController
         
         $this->global['today_contest'] = $today_contest[0];
         $this->loadViews("admin/todaycontest", $this->global, NULL , NULL);	
+    }
+
+    public function viewcontest($contest_id)
+    {
+        $this->global['pageTitle'] = 'Admin : View Contest';
+        $contest = $this->contest_model->getContest($contest_id);
+
+        if(count($contest) == 0)
+        {
+            $this->loadThis();
+        }
+        else
+        {
+            $this->global['contest'] = $contest[0];
+            $this->loadViews("admin/viewcontest", $this->global, NULL , NULL);
+        }
     }
 
 

@@ -15,6 +15,8 @@ class Customer extends BaseController
     {
         parent::__construct();
         $this->load->model('user_model');
+        $this->load->model('contest_model');
+        $this->load->model('ticket_model');
         $this->isLoggedIn();   
     }
 
@@ -64,5 +66,94 @@ class Customer extends BaseController
             
             redirect('customer/myprofile');
         }
+    }
+
+    public function contests()
+    {
+        $this->global['pageTitle'] = 'Customer : Contests';
+        $this->global['all_contests'] = $this->contest_model->getAllContests();
+        $this->loadViews("customer/contests", $this->global, NULL , NULL);
+    }
+
+    public function viewcontest($contest_id)
+    {
+        $this->global['pageTitle'] = 'Customer : ViewContest';
+       
+        $contest = $this->contest_model->getContest($contest_id);
+
+        if(count($contest) == 0)
+        {
+            $this->loadThis();
+        }
+        else
+        {
+            $this->global['contest'] = $contest[0];
+            $this->loadViews("customer/viewcontest", $this->global, NULL , NULL);
+        }
+    }
+
+    public function todaycontest()
+    {
+        $this->global['pageTitle'] = "Customer : Today's Contest";
+        $today_contest = $this->contest_model->getTodayContest();
+
+        if(count($today_contest) == 0)
+        {
+            $inserted_id = $this->contest_model->createTodayContest();            
+            $today_contest = $this->contest_model->getTodayContest();
+        }
+
+        
+        $this->global['today_contest'] = $today_contest[0];
+        $this->loadViews("customer/todaycontest", $this->global, NULL , NULL); 
+    }
+
+    public function uploadimage()
+    {
+        // $this->load->library('form_validation');
+
+        // $this->form_validation->set_rules('image','Image','required');
+        // if($this->form_validation->run() == FALSE)
+        // {
+        //     $this->session->set_flashdata('error', 'Image uploading is not done!');
+        //     redirect('customer/todaycontest');
+
+        // }
+        // else
+        // {   
+            $data = array();
+
+            $uploaddir = './assets/uploads/';
+            $path = $_FILES['image']['name'];
+            $ext = pathinfo($path, PATHINFO_EXTENSION);
+            $dest_filename = md5(uniqid(rand(),true)).'.'.$ext;
+            $uploadfile = $uploaddir.$dest_filename;
+            $file_name = $dest_filename;
+            if(move_uploaded_file($_FILES['image']['tmp_name'], $uploadfile))
+            {
+                $contest = $this->contest_model->getTodayContest()[0];
+                
+                $data['image_name'] = $file_name;
+                $data['user_id'] = $this->vendorId;
+                $data['contest_id'] = $contest->id;
+
+                $result = $this->ticket_model->addNewTicket($data);
+                if($result)
+                {
+                    $this->session->set_flashdata('success', 'Image uploading is done successfully!');
+                    redirect('customer/todaycontest');
+                    exit();    
+                }
+
+
+                $this->session->set_flashdata('error', 'Image uploading is not done!');
+                redirect('customer/todaycontest');
+                exit();
+                
+            }
+
+            $this->session->set_flashdata('error', 'Image uploading is not done!');
+            redirect('customer/todaycontest');
+        // }
     }
 }

@@ -4,9 +4,17 @@ class Contest_model extends CI_Model
 {
 	private $table_name = "tbl_contest";
 
-	public function getAllContest()
+	public function getAllContests()
 	{
 		$query = $this->db->get($this->table_name);
+		return $query->result();
+	}
+
+	public function getContest($contest_id)
+	{
+		$this->db->where('id', $contest_id);
+		$query = $this->db->get($this->table_name);
+
 		return $query->result();
 	}
 

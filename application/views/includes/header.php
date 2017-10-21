@@ -142,6 +142,18 @@
             </li>
             <?php
             }
+
+            if($role == ROLE_EMPLOYEE)
+            {
+              ?>
+              <li class="treeview">
+              <a href="<?=base_url('customer/contests')?>" >
+                <i class="fa fa-upload"></i>
+                <span>Contests</span>
+              </a>
+            </li>
+              <?php
+            }
             ?>
           </ul>
         </section>

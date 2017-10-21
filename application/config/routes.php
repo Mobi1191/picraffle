@@ -77,9 +77,14 @@ $route['createPasswordUser'] = "login/createPasswordUser";
 
 $route['customer/myprofile'] = 'customer/profile';
 $route['customer/editmyprofile'] = 'customer/editprofile';
+$route['customer/contests'] = 'customer/contests';
+$route['customer/viewcontest/(:num)'] = 'customer/viewcontest/$1';
+$route['customer/todaycontest'] = 'customer/todaycontest';
+$route['customer/uploadimage'] = 'customer/uploadimage';
 
 /*admin*/
 
 $route['admin/contests'] = 'admin/contests';
 $route['admin/todaycontest'] = 'admin/todaycontest';
 $route['admin/editcontest'] = 'admin/editcontest';
+$route['admin/viewcontest/(:num)'] = 'admin/viewcontest/$1';
