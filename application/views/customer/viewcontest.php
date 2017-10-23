@@ -17,7 +17,7 @@
 	                </div><!-- /.box-header -->
 	                <!-- form start -->
 	               
-	                	<input type="hidden" name="contest_id" value="<?=$contest->id?>">
+	                	<input type="hidden" name="contest_id" value="<?=$contest->contest_id?>">
                         <div class="box-body">
                             <div class="row">
                                 <div class="col-md-6">                                
@@ -70,8 +70,50 @@
 	            </div>
         	</div>
 
-        	
+            <div class="col-md-4">
 
+                <?php
+                    if(count($owned_ticket)>0)
+                    {
+                ?>
+                 <div style="margin: 20px; border: solid 2px #aaa;border-radius: 5px;padding: 10px;">
+                    <img src="<?=base_url()?>assets/uploads/<?=$owned_ticket[0]->image_name?>" style="border-radius: 3px; width: 100%;">
+                    <p style="text-align: center;margin-top: 10px;font-size: 20px;">Owner Name : <?=$owned_ticket[0]->name?></p>
+                
+                </div>
+                <?php
+                    }
+                ?>
+            </div>
+
+        </div>
+
+         <div class="row">
+            <div class="row" style="margin: 20px; border:solid 2px #aaa;border-radius: 5px; ">
+                <?php
+                    if(count($all_tickets) == 0)
+                    {
+                        ?>
+                            <h1>There is no any ticket.</h1>
+                        <?php
+                    }
+                    else{
+                        foreach ($all_tickets as $ticket) {
+                            ?>
+                                <div class="col-md-3">
+                                    <div style="margin: 10px;padding: 10px; border: solid 1px #ccc; background: white;border-radius: 5px;">
+                                        <img src="<?=base_url()?>assets/uploads/<?=$ticket->image_name?>" style="width: 100%; border-radius: 5px;">
+                                        <div style="text-align: center; margin-top: 10px;">
+                                            <p>Customer : <?=$ticket->name?></p>
+                                            <a href="<?=base_url()?>assets/uploads/<?=$ticket->image_name?>" class="btn btn-primary">View</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php
+                        }
+                    }
+                ?>
+            </div>
         </div>
     </section>
 </div>

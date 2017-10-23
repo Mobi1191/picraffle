@@ -88,3 +88,4 @@ $route['admin/contests'] = 'admin/contests';
 $route['admin/todaycontest'] = 'admin/todaycontest';
 $route['admin/editcontest'] = 'admin/editcontest';
 $route['admin/viewcontest/(:num)'] = 'admin/viewcontest/$1';
+$route['admin/own/(:num)/(:num)/(:num)'] = 'admin/own/$1/$2/$3';

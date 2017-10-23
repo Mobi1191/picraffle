@@ -12,7 +12,7 @@ class Contest_model extends CI_Model
 
 	public function getContest($contest_id)
 	{
-		$this->db->where('id', $contest_id);
+		$this->db->where('contest_id', $contest_id);
 		$query = $this->db->get($this->table_name);
 
 		return $query->result();
@@ -53,7 +53,7 @@ class Contest_model extends CI_Model
 
 	public function updateDataWhereId($contest_id, $data)
 	{
-		$this->db->where('id', $contest_id);
+		$this->db->where('contest_id', $contest_id);
 		$this->db->update($this->table_name, $data);
 
 		$updated_status = $this->db->affected_rows();
@@ -62,6 +62,16 @@ class Contest_model extends CI_Model
 		    return $contest_id;
 		}
 		return false;
+	}
+
+	public function own($ticket_id, $user_id, $contest_id)
+	{
+		$this->db->where('contest_id', $contest_id);
+		$data =  array(
+			'owner' => $user_id, 
+			'owner_ticket' => $ticket_id
+		);
+		$this->db->update($this->table_name, $data);
 	}
 }
 

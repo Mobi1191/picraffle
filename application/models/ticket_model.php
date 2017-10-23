@@ -9,4 +9,75 @@ class Ticket_model extends CI_Model
 		$result = $this->db->insert($this->table_name, $data);
 		return $result;
 	}
+
+	public function getAllTodayTickets(){
+		$this->db->from($this->table_name);
+		
+		$date = new DateTime("now");
+		$curr_date = $date->format('Y-m-d ');
+		$this->db->where('DATE(contest_date)',$curr_date);
+
+		$this->db->select('*');
+		$this->db->join('tbl_contest', 'tbl_contest.contest_id = tbl_tickets.contest_id');
+
+		$this->db->join('tbl_users', 'tbl_tickets.user_id = tbl_users.userId');
+
+		$query = $this->db->get();
+
+		return $query->result();
+
+	}
+
+	public function getTicketsByContestId($contest_id)
+	{
+		$this->db->from($this->table_name);
+		
+		$this->db->where('tbl_contest.contest_id', $contest_id);		
+
+		$this->db->select('*');
+		$this->db->join('tbl_contest', 'tbl_contest.contest_id = tbl_tickets.contest_id');
+
+		$this->db->join('tbl_users', 'tbl_tickets.user_id = tbl_users.userId');
+
+		$query = $this->db->get();
+
+		return $query->result();
+
+	}
+
+	public function own($ticket_id, $user_id, $contest_id)
+	{
+		$this->unsetOwn($contest_id);
+
+		$this->db->where('ticket_id', $ticket_id);
+
+		$data = array(
+			'is_owned'		=> 1
+		);
+
+		$this->db->update($this->table_name, $data);
+
+	}
+
+	public function unsetOwn($contest_id)
+	{
+		$this->db->where('contest_id', $contest_id);
+		$data = array(
+			'is_owned' 		=> 0
+		);
+		$this->db->update($this->table_name, $data);
+	}
+
+	public function getOwner($contest_id)
+	{
+		$this->db->from($this->table_name);
+		$this->db->where('contest_id', $contest_id);
+		$this->db->where('is_owned', 1);
+
+		$this->db->join('tbl_users', 'tbl_users.userId = tbl_tickets.user_id');
+
+		$query = $this->db->get();
+		return $query->result();
+
+	}
 }

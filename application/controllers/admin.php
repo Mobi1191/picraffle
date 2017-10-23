@@ -9,6 +9,7 @@ class Admin extends BaseController
         parent::__construct();
         $this->load->model('user_model');
         $this->load->model('contest_model');
+        $this->load->model('ticket_model');
         $this->isLoggedIn();   
         if($this->isAdmin() == TRUE)
         {
@@ -37,8 +38,11 @@ class Admin extends BaseController
             $today_contest = $this->contest_model->getTodayContest();
         }
 
-        
+        $this->global['all_todays_tickets'] = $this->ticket_model->getAllTodayTickets();
         $this->global['today_contest'] = $today_contest[0];
+
+        $this->global['owned_ticket'] = $this->ticket_model->getOwner($today_contest[0]->contest_id);
+
         $this->loadViews("admin/todaycontest", $this->global, NULL , NULL);	
     }
 
@@ -54,6 +58,8 @@ class Admin extends BaseController
         else
         {
             $this->global['contest'] = $contest[0];
+            $this->global['all_tickets'] = $this->ticket_model->getTicketsByContestId($contest[0]->contest_id);
+            $this->global['owned_ticket'] = $this->ticket_model->getOwner($contest[0]->contest_id);
             $this->loadViews("admin/viewcontest", $this->global, NULL , NULL);
         }
     }
@@ -109,6 +115,15 @@ class Admin extends BaseController
             redirect('admin/editcontest');
         }
 
+    }
+
+    public function own($ticket_id, $user_id, $contest_id)
+    {
+        $this->ticket_model->own($ticket_id, $user_id, $contest_id);
+        $this->contest_model->own($ticket_id, $user_id, $contest_id);
+
+        $this->session->set_flashdata('success', 'Selected Owner Successfully!');
+        redirect('admin/todaycontest');
     }
 
 }

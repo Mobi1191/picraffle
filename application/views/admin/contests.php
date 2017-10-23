@@ -52,7 +52,7 @@ title="Enter a date in this format YYYY-MM-DD" class="form-control input-sm pull
                     			<td><?=$contest->prize?></td>
                     			<td><?=$contest->owner?></td>
                     			<td><?=$contest->owner_ticket?></td>
-                    			<td><a class="btn btn-sm btn-info" href="<?php echo base_url().'admin/viewcontest/'.$contest->id; ?>"><i class="fa fa-pencil"></i></a></td>
+                    			<td><a class="btn btn-sm btn-info" href="<?php echo base_url().'admin/viewcontest/'.$contest->contest_id; ?>"><i class="fa fa-pencil"></i></a></td>
                     		</tr>
                     <?php
                         }

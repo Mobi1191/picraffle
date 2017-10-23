@@ -88,6 +88,9 @@ class Customer extends BaseController
         else
         {
             $this->global['contest'] = $contest[0];
+            $this->global['all_tickets'] = $this->ticket_model->getTicketsByContestId($contest[0]->contest_id);
+            $this->global['owned_ticket'] = $this->ticket_model->getOwner($contest[0]->contest_id);
+            //var_dump($this->global['all_tickets']);
             $this->loadViews("customer/viewcontest", $this->global, NULL , NULL);
         }
     }
@@ -99,12 +102,15 @@ class Customer extends BaseController
 
         if(count($today_contest) == 0)
         {
-            $inserted_id = $this->contest_model->createTodayContest();            
-            $today_contest = $this->contest_model->getTodayContest();
+            $this->loadThis();
+            return;
         }
 
         
         $this->global['today_contest'] = $today_contest[0];
+        $this->global['all_todays_tickets'] = $this->ticket_model->getAllTodayTickets();
+        $this->global['owned_ticket'] = $this->ticket_model->getOwner($today_contest[0]->contest_id);
+        // var_dump($this->global['all_todays_tickets']);
         $this->loadViews("customer/todaycontest", $this->global, NULL , NULL); 
     }
 
@@ -135,7 +141,7 @@ class Customer extends BaseController
                 
                 $data['image_name'] = $file_name;
                 $data['user_id'] = $this->vendorId;
-                $data['contest_id'] = $contest->id;
+                $data['contest_id'] = $contest->contest_id;
 
                 $result = $this->ticket_model->addNewTicket($data);
                 if($result)
