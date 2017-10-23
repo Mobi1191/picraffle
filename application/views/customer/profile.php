@@ -17,7 +17,7 @@
                     <h3 class="box-title">Enter User Details</h3>
                 </div><!-- /.box-header -->
                 <!-- form start -->
-                 <form role="form" action="<?php echo base_url('customer/editmyprofile') ?>" method="post" id="editUser" role="form">
+                 <form role="form" action="<?php echo base_url('customer/editmyprofile') ?>" method="post" id="editUser" role="form" enctype="multipart/form-data">
                         <div class="box-body">
                             <div class="row">
                                 <div class="col-md-6">                                
@@ -43,7 +43,15 @@
                                         <input type="text" class="form-control" id="mobile" placeholder="Mobile Number" name="mobile" value="<?php echo $userinfo[0]->mobile; ?>" maxlength="10">
                                     </div>
                                 </div>
-                                
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">                                
+                                    <div class="form-group">
+                                        <label for="fname">Account Image</label>
+                                        <input type="file" class="form-control" id="upload_image"  name="image"   required="" accept="image/*">
+                                    </div>                            
+                                </div>
                             </div>
                         </div><!-- /.box-body -->
     

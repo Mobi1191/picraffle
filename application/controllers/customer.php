@@ -46,25 +46,86 @@ class Customer extends BaseController
             $email = $this->input->post('email');
             $mobile = $this->input->post('mobile');
             
-            $userInfo = array();
+            $uploaddir = './assets/account_image/';
+            $path = $_FILES['image']['name'];
+            $ext = pathinfo($path, PATHINFO_EXTENSION);
+            $dest_filename = md5(uniqid(rand(),true)).'.'.$ext;
+            $uploadfile = $uploaddir.$dest_filename;
+            $file_name = $dest_filename;
+            if(move_uploaded_file($_FILES['image']['tmp_name'], $uploadfile))
+            {
+                // $contest = $this->contest_model->getTodayContest()[0];
+                
+                // $data['image_name'] = $file_name;
+                // $data['user_id'] = $this->vendorId;
+                // $data['contest_id'] = $contest->contest_id;
+
+                // $result = $this->ticket_model->addNewTicket($data);
+                // if($result)
+                // {
+                //     $this->session->set_flashdata('success', 'Image uploading is done successfully!');
+                //     redirect('customer/todaycontest');
+                //     exit();    
+                // }
+
+
+                // $this->session->set_flashdata('error', 'Image uploading is not done!');
+                // redirect('customer/todaycontest');
+                // exit();
+
+                $userInfo = array();
             
-            $userInfo = array('email'=>$email, 'name'=>$name,
-                'mobile'=>$mobile, 'updatedBy'=>$this->vendorId, 'updatedDtm'=>date('Y-m-d H:i:s'));
+                $userInfo = array(
+                    'email'=>$email, 
+                    'name'=>$name,
+                    'mobile'=>$mobile, 
+                    'updatedBy'=>$this->vendorId, 
+                    'updatedDtm'=>date('Y-m-d H:i:s'),
+                    'image_name'=>$file_name
+                );
+
+                $this->session->set_userdata('avartarImage', $file_name);
+                
+              
+                
+                $result = $this->user_model->editUser($userInfo, $this->vendorId);
+                
+                if($result == true)
+                {
+                    $this->session->set_flashdata('success', 'User updated successfully');
+                }
+                else
+                {
+                    $this->session->set_flashdata('error', 'User updation failed');
+                }
+                
+                redirect('customer/myprofile');
+                
+            }
+            else{
+                $this->session->set_flashdata('error', 'User updation failed');
+                redirect('customer/myprofile');
+            }
+
+            // $userInfo = array();
+            
+            // $userInfo = array('email'=>$email, 'name'=>$name,
+            //     'mobile'=>$mobile, 'updatedBy'=>$this->vendorId, 'updatedDtm'=>date('Y-m-d H:i:s'));
             
           
             
-            $result = $this->user_model->editUser($userInfo, $this->vendorId);
+            // $result = $this->user_model->editUser($userInfo, $this->vendorId);
             
-            if($result == true)
-            {
-                $this->session->set_flashdata('success', 'User updated successfully');
-            }
-            else
-            {
-                $this->session->set_flashdata('error', 'User updation failed');
-            }
+            // if($result == true)
+            // {
+            //     $this->session->set_flashdata('success', 'User updated successfully');
+            // }
+            // else
+            // {
+                // $this->session->set_flashdata('error', 'User updation failed');
+            // }
             
-            redirect('customer/myprofile');
+            // redirect('customer/myprofile');
         }
     }
 
