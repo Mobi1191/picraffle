@@ -15,13 +15,11 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-  <body class="login-page" >
-    <div style="position: absolute;    z-index: -1;width: 100%;height: 100%;background: url(assets/images/tao.jpg) no-repeat;    opacity: 0.5;
+    <body class="login-page" style="padding: 1px;">
+     <div style="position: absolute;    z-index: -1;width: 100%;height: 100%;background: url(assets/images/tao.jpg) no-repeat;    opacity: 0.5;
     background-size: cover;
     margin: 0;
-    margin-top: -100px;">
-      
-    </div>
+    "></div>
     <div class="login-box">
       <div class="login-logo">
         <!-- <a href="#"><b>PicRaffle</b><br> System</a> -->
