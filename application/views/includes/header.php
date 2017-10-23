@@ -41,9 +41,13 @@
         <!-- Logo -->
         <a href="<?php echo base_url(); ?>" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
-          <span class="logo-mini">PicR</span>
+          <span class="logo-mini">
+            <img src="<?=base_url()?>assets/images/logo.png" style="width: 50px;">
+          </span>
           <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg">PicRaffle</span>
+          <span class="logo-lg">
+            <img src="<?=base_url()?>assets/images/logo.png" style="width: 50px;">
+          </span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top" role="navigation">

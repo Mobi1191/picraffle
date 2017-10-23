@@ -16,9 +16,16 @@
     <![endif]-->
   </head>
   <body class="login-page" >
+    <div style="position: absolute;    z-index: -1;width: 100%;height: 100%;background: url(assets/images/tao.jpg) no-repeat;    opacity: 0.5;
+    background-size: cover;
+    margin: 0;
+    margin-top: -100px;">
+      
+    </div>
     <div class="login-box">
       <div class="login-logo">
-        <a href="#"><b>PicRaffle</b><br> System</a>
+        <!-- <a href="#"><b>PicRaffle</b><br> System</a> -->
+        <img src="<?=base_url()?>assets/images/logo.png" style="width: 100px;">
       </div><!-- /.login-logo -->
       <div class="login-box-body">
         <p class="login-box-msg">Sign In</p>

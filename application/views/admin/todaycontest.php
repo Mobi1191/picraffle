@@ -138,7 +138,7 @@
                                         <div style="text-align: center; margin-top: 10px;">
                                             <p>Customer : <?=$ticket->name?></p>
                                             <a href="<?=base_url()?>assets/uploads/<?=$ticket->image_name?>" class="btn btn-primary">View</a>
-                                            <a href="<?=base_url()?>admin/own/<?=$ticket->ticket_id?>/<?=$ticket->user_id?>/<?=$ticket->contest_id?>" class="btn btn-success">Own</a>
+                                            <a  href="#" data-toggle="modal" data-target="#myModal" data-src="<?=base_url()?>admin/own/<?=$ticket->ticket_id?>/<?=$ticket->user_id?>/<?=$ticket->contest_id?>" class="btn btn-success pic_ticket">Own</a>
                                         </div>
                                     </div>
                                 </div>
@@ -148,5 +148,36 @@
                 ?>
             </div>
         </div>
+       <!--  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button> -->
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Do you Want to pic this Image</h4>
+      </div>
+      <div class="modal-body">
+        <p>If you so , Please Click Ok, else cancel.</p>
+      </div>
+      <div class="modal-footer">
+        <a href="" class="btn btn-danger" id="pic_ok_btn">Ok</a>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+
+  </div>
+</div>
 	</section>
 </div>
+
+<script type="text/javascript">
+    
+    $(".pic_ticket").click(function(){
+        var src = $(this).data('src');
+        $("#pic_ok_btn").attr('href',src);
+    });
+</script>
