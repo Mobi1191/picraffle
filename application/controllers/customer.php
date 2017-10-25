@@ -81,7 +81,7 @@ class Customer extends BaseController
                     'mobile'=>$mobile, 
                     'updatedBy'=>$this->vendorId, 
                     'updatedDtm'=>date('Y-m-d H:i:s'),
-                    'image_name'=>$file_name
+                    'account_image_name'=>$file_name
                 );
 
                 $this->session->set_userdata('avartarImage', $file_name);
