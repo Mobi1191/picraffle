@@ -10,7 +10,7 @@ class Login_model extends CI_Model
      */
     function loginMe($email, $password)
     {
-        $this->db->select('BaseTbl.userId, BaseTbl.password, BaseTbl.name, BaseTbl.roleId, Roles.role, BaseTbl.image_name');
+        $this->db->select('BaseTbl.userId, BaseTbl.password, BaseTbl.name, BaseTbl.roleId, Roles.role, BaseTbl.account_image_name');
         $this->db->from('tbl_users as BaseTbl');
         $this->db->join('tbl_roles as Roles','Roles.roleId = BaseTbl.roleId');
         $this->db->where('BaseTbl.email', $email);
@@ -105,6 +105,51 @@ class Login_model extends CI_Model
         $this->db->update('tbl_users', array('password'=>getHashedPassword($password)));
         $this->db->delete('tbl_reset_password', array('email'=>$email));
     }
+
+    function b_loginUserName($user_name, $password)
+    {
+        $this->db->from('tbl_users');
+        $this->db->join('tbl_roles','tbl_roles.roleId = tbl_users.roleId');
+        $this->db->where('name', $user_name);
+        $this->db->where('isDeleted', 0);
+        $this->db->where('role' , 'Employee');
+        $query = $this->db->get();
+        
+        $user = $query->result();
+        
+        if(!empty($user)){
+            if(verifyHashedPassword($password, $user[0]->password)){
+                return $user;
+            } else {
+                return array();
+            }
+        } else {
+            return array();
+        }
+    }
+
+    function b_loginEmail($email, $password)
+    {
+        $this->db->from('tbl_users');
+        $this->db->join('tbl_roles','tbl_roles.roleId = tbl_users.roleId');
+        $this->db->where('email', $email);
+        $this->db->where('isDeleted', 0);
+        $this->db->where('role' , 'Employee');
+        $query = $this->db->get();
+        
+        $user = $query->result();
+        
+        if(!empty($user)){
+            if(verifyHashedPassword($password, $user[0]->password)){
+                return $user;
+            } else {
+                return array();
+            }
+        } else {
+            return array();
+        }
+    }
+
 }
 
 ?>

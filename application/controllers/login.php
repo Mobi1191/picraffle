@@ -88,7 +88,7 @@ class Login extends CI_Controller
                                             'roleText'=>$res->role,
                                             'name'=>$res->name,
                                             'isLoggedIn' => TRUE,
-                                            'avartarImage' => $res->image_name
+                                            'avartarImage' => $res->account_image_name
                                     );
                                     
                     $this->session->set_userdata($sessionArray);
