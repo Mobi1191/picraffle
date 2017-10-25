@@ -125,7 +125,7 @@ class Backend extends CI_Controller
                 'success' => '1',
                 'msg' => $todaycontest
             );
-            echo json_encode($todaycontest);
+            echo json_encode($data);
             exit();
         }
         else{
