@@ -66,4 +66,52 @@ class Backend extends CI_Controller
         }
 
     }
+
+    public function signup()
+    {
+        $user_name = $this->input->post('user_name');
+        $user_email = $this->input->post('user_email');
+        $user_password = $this->input->post('user_password');
+
+        if(count($this->user_model->getUserByUserName($user_name)) == 0 && count($this->user_model->getUserByEmail($user_email)) == 0)
+        {
+            $data = array(
+                'email'         => $user_email,
+                'name'          => $user_name,
+                'password'      => getHashedPassword($user_password),
+                'roleId'        => 3,
+                'createdBy'     =>'-1', 
+                'createdDtm'    =>date('Y-m-d H:i:s')
+            );
+
+            $result = $this->user_model->addNewUser($data);
+
+            if($result > 0)
+            {
+               $data = array(
+                    'success' => '1',
+                    'msg' => $result
+                );
+                echo json_encode($data);
+                exit();  
+            }
+            
+               $data = array(
+                    'success' => '0',
+                    'msg'     => 'Cannot signup, Database Processing Error, Try again.'
+                );
+                echo json_encode($data);
+                exit();
+            
+        }
+       
+            $data = array(
+                    'success' => '0',
+                    'msg'     => 'User Name or Email is duplicated, Please signup with other username  and email.'
+                );
+                echo json_encode($data);
+                exit();
+       
+
+    }
 }

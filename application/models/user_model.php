@@ -2,6 +2,8 @@
 
 class User_model extends CI_Model
 {
+
+    private $table_name = 'tbl_users';
     /**
      * This function is used to get the user listing count
      * @param string $searchText : This is optional search text
@@ -187,6 +189,22 @@ class User_model extends CI_Model
         $this->db->update('tbl_users', $userInfo);
         
         return $this->db->affected_rows();
+    }
+
+    function getUserByUserName($user_name)
+    {
+        $this->db->where('name', $user_name);
+        $this->db->where('roleId', 3);
+        $query = $this->db->get($this->table_name);
+        return $query->result();
+    }
+
+    function getUserByEmail($user_email)
+    {
+        $this->db->where('email', $user_email);
+        $this->db->where('roleId', 3);
+        $query = $this->db->get($this->table_name);
+        return $query->result();
     }
 }
 
