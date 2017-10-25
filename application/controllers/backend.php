@@ -114,4 +114,27 @@ class Backend extends CI_Controller
        
 
     }
+
+    public function todaytickets()
+    {
+        $todaycontest= $this->ticket_model->getAllTodayTickets();
+
+        if(count($todaycontest)>0)
+        {
+            $data = array(
+                'success' => '1',
+                'msg' => $todaycontest
+            );
+            echo json_encode($todaycontest);
+            exit();
+        }
+        else{
+            $data =  array(
+                'success' => '0',
+                'msg'   => array('error'=>'There is no any Images')
+             );
+            echo json_encode($data);
+            exit();
+        }
+    }
 }
