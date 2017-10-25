@@ -90,7 +90,7 @@ class Backend extends CI_Controller
             {
                $data = array(
                     'success' => '1',
-                    'msg' => $result
+                    'msg' => $this->user_model->getUserInfo($result)[0]
                 );
                 echo json_encode($data);
                 exit();  
