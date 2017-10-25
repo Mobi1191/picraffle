@@ -45,7 +45,7 @@ class Backend extends CI_Controller
             }
             else
             {
-                $data = array(/
+                $data = array(
                     'success' => '1',
                     'msg' => $result[0]
                 );
