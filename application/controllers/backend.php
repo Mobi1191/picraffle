@@ -137,4 +137,52 @@ class Backend extends CI_Controller
             exit();
         }
     }
+
+    public function getticketsbyuserid($user_id)
+    {
+        $result = $this->ticket_model->getTicketsByUserId($user_id);
+        if(count($result) == 0)
+        {
+            $data = array(
+                'success'       => '0',
+                'msg'           => array('error' => 'There is not any Images')
+            );
+
+            echo json_encode($data);
+            exit();
+        }
+        else{
+            $data = array(
+                'success'       => '1',
+                'msg'           => $result
+            );
+
+            echo json_encode($data);
+            exit();   
+        }
+    }
+
+    public function getpastwinners()
+    {
+        $result = $this->ticket_model->getPastWinners();
+        if(count($result) == 0)
+        {
+            $data = array(
+                'success'       => '0',
+                'msg'           => array('error' => 'There is not any Winners')
+            );
+
+            echo json_encode($data);
+            exit();
+        }
+        else{
+            $data = array(
+                'success'       => '1',
+                'msg'           => $result
+            );
+
+            echo json_encode($data);
+            exit();   
+        }
+    }
 }

@@ -95,3 +95,5 @@ $route['admin/own/(:num)/(:num)/(:num)'] = 'admin/own/$1/$2/$3';
 $route['backend/login'] = 'backend/login';
 $route['backend/signup'] = 'backend/signup';
 $route['backend/gettodaytickets'] = 'backend/todaytickets';
+$route['backend/getticketsbyuserid/(:num)'] = 'backend/getticketsbyuserid/$1';
+$route['backend/getpastwinners'] = 'backend/getpastwinners';

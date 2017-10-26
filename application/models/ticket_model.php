@@ -80,4 +80,28 @@ class Ticket_model extends CI_Model
 		return $query->result();
 
 	}
+
+	public function getTicketsByUserId($user_id){
+		$this->db->from($this->table_name);
+		$this->db->select('*');
+		$this->db->where('userId', $user_id);		
+		$this->db->join('tbl_contest', 'tbl_contest.contest_id = tbl_tickets.contest_id');
+		$this->db->join('tbl_users', 'tbl_tickets.user_id = tbl_users.userId');
+
+		$query = $this->db->get();
+
+		return $query->result();
+
+	}
+
+	public function getPastWinners()
+	{
+		$this->db->from($this->table_name);
+		$this->db->select('*');
+		$this->db->where('is_owned',1);		
+		$this->db->join('tbl_contest', 'tbl_contest.contest_id = tbl_tickets.contest_id');
+		$this->db->join('tbl_users', 'tbl_tickets.user_id = tbl_users.userId');
+		$query = $this->db->get();
+		return $query->result();
+	}
 }
