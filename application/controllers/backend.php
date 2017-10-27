@@ -41,7 +41,7 @@ class Backend extends CI_Controller
                     'msg'     => 'Faild user name or password'
                 );
                 echo json_encode($data);
-                exit();       
+                exit();   
             }
             else
             {
@@ -185,4 +185,81 @@ class Backend extends CI_Controller
             exit();   
         }
     }
+
+    public function gettodaycontestinfo()
+    {
+        $result = $this->contest_model->getTodayContest();
+
+        if(count($result) == 0)
+        {
+            $data = array(
+                'success'       => '0',
+                'msg'           => array('error' => 'Today contest is not yet created.')
+            );
+
+            echo json_encode($data);
+            exit();
+        }
+        else{
+            $data = array(
+                'success'       => '1',
+                'msg'           => $result
+            );
+
+            echo json_encode($data);
+            exit();   
+        }
+    }
+
+    public function contestupload()
+    {
+        $user_id = $this->input->post('user_id');
+        $contest_id = $this->input->post('contest_id');
+        $data = array();
+        $uploaddir = './assets/uploads/';
+        $path = $_FILES['image']['name'];
+        $ext = pathinfo($path, PATHINFO_EXTENSION);
+        $dest_filename = md5(uniqid(rand(),true)).'.'.$ext;
+        $uploadfile = $uploaddir.$dest_filename;
+        $file_name = $dest_filename;
+        if(move_uploaded_file($_FILES['image']['tmp_name'], $uploadfile))
+        {
+            $contest = $this->contest_model->getTodayContest()[0];
+            
+            $data['image_name'] = $file_name;
+            $data['user_id'] = $user_id;
+            $data['contest_id'] = $contest_id;
+
+            $result = $this->ticket_model->addNewTicket($data);
+            if($result)
+            {
+               $data_return = array(
+                    'success'       => '1',
+                    'msg'           => array('success' => "Image uploding is done successfully.")
+                );
+
+                echo json_encode($data_return);
+                exit();   
+            }
+
+            $data_return = array(
+                'success'       => '0',
+                'msg'           => array('error' => 'Image uploding is not done.')
+            );
+
+     
+            echo json_encode($data_return);
+            exit();
+            
+        }
+
+        $data_return = array(
+            'success'       => '0',
+            'msg'           => array('error' => 'Image uploding is not done.')
+        );
+
+        echo json_encode($data_return);
+        exit();
+    }
+            
 }

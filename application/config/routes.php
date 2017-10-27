@@ -97,3 +97,5 @@ $route['backend/signup'] = 'backend/signup';
 $route['backend/gettodaytickets'] = 'backend/todaytickets';
 $route['backend/getticketsbyuserid/(:num)'] = 'backend/getticketsbyuserid/$1';
 $route['backend/getpastwinners'] = 'backend/getpastwinners';
+$route['backend/gettodaycontestinfo'] = 'backend/gettodaycontestinfo';
+$route['backend/contestupload'] = 'backend/contestupload';
