@@ -222,6 +222,9 @@ class Backend extends CI_Controller
         $dest_filename = md5(uniqid(rand(),true)).'.'.$ext;
         $uploadfile = $uploaddir.$dest_filename;
         $file_name = $dest_filename;
+        ini_set("upload_max_filesize", "80M");
+        ini_set("post_max_size", "80M");
+        
         if(move_uploaded_file($_FILES['image']['tmp_name'], $uploadfile))
         {
             $contest = $this->contest_model->getTodayContest()[0];
