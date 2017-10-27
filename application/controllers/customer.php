@@ -189,7 +189,6 @@ class Customer extends BaseController
         // else
         // {   
             $data = array();
-
             $uploaddir = './assets/uploads/';
             $path = $_FILES['image']['name'];
             $ext = pathinfo($path, PATHINFO_EXTENSION);

@@ -28,6 +28,15 @@
                                     </div>
                                     
                                 </div>
+
+                                <div class="col-md-6">                                
+                                    <div class="form-group">
+                                        <label for="fname">Price for One Ticket</label>
+                                        <input type="number" class="form-control" id="price_for_one_ticket" placeholder="Enter Price One Ticket" name="price_one_ticket" value="<?=$contest->price_one_ticket?>" maxlength="10" min="0" disabled>
+                                        
+                                    </div>
+                                    
+                                </div>
                                
                             </div>
                             

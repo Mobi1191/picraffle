@@ -75,6 +75,7 @@ class Admin extends BaseController
         $this->load->library('form_validation');
 
         $this->form_validation->set_rules('prize','Prize','trim|required');
+        $this->form_validation->set_rules('price_one_ticket','Price One Ticket','trim|required');
         $this->form_validation->set_rules('30_tickets_price','30 Tickets Price','trim|required');
         $this->form_validation->set_rules('70_tickets_price','70 Tickets Price','trim|required');
         $this->form_validation->set_rules('120_tickets_price','120 Tickets Price','trim|required');
@@ -88,6 +89,7 @@ class Admin extends BaseController
         {
             $contest_id         = $this->input->post('contest_id');
             $prize              = $this->input->post('prize');
+            $price_one_ticket   = $this->input->post('price_one_ticket');
             $t30_tickets_price  = $this->input->post('30_tickets_price');
             $t70_tickets_price  = $this->input->post('70_tickets_price');
             $t120_tickets_price = $this->input->post('120_tickets_price');
@@ -98,7 +100,8 @@ class Admin extends BaseController
                 't30_tickets_price' => $t30_tickets_price,
                 't70_tickets_price' => $t70_tickets_price,
                 't120_tickets_price' => $t120_tickets_price,
-                't200_tickets_price' => $t200_tickets_price
+                't200_tickets_price' => $t200_tickets_price,
+                'price_one_ticket'  => $price_one_ticket
             );
 
             $result = $this->contest_model->updateDataWhereId($contest_id, $data);
