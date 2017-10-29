@@ -203,7 +203,7 @@ class Backend extends CI_Controller
         else{
             $data = array(
                 'success'       => '1',
-                'msg'           => $result
+                'msg'           => $result[0]
             );
 
             echo json_encode($data);
