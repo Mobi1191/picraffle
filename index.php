@@ -18,6 +18,8 @@
  * NOTE: If you change these, also change the error_reporting() code below
  *
  */
+
+require __DIR__  . '/vendor/autoload.php';
 	define('ENVIRONMENT', 'development');
 /*
  *---------------------------------------------------------------

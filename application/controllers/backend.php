@@ -222,9 +222,7 @@ class Backend extends CI_Controller
         $dest_filename = md5(uniqid(rand(),true)).'.'.$ext;
         $uploadfile = $uploaddir.$dest_filename;
         $file_name = $dest_filename;
-        ini_set("upload_max_filesize", "80M");
-        ini_set("post_max_size", "80M");
-        
+      
         if(move_uploaded_file($_FILES['image']['tmp_name'], $uploadfile))
         {
             $contest = $this->contest_model->getTodayContest()[0];
@@ -263,6 +261,27 @@ class Backend extends CI_Controller
 
         echo json_encode($data_return);
         exit();
+    }
+
+    public function buyticketsuccess(){
+        $user_id = $this->input->post('user_id');
+        $count = $this->input->post('count');
+
+        $user = $this->user_model->getUserInfo($user_id);
+
+
+    }
+
+    public function getbraintreetoken()
+    {
+        Braintree_Configuration::environment('sandbox');
+        Braintree_Configuration::merchantId('68by6yqnx2v7kdyc');
+        Braintree_Configuration::publicKey('dkg4smxkwt5cqzfb');
+        Braintree_Configuration::privateKey('d071d4c3780a2850b4347221abc69746');
+        $token = Braintree_ClientToken::generate();
+        echo json_encode(array(
+            'token' => $token
+        ));
     }
             
 }

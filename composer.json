@@ -1,0 +1,6 @@
+{
+    "name": "administrator/picraffle",
+    "require": {
+    	"braintree/braintree_php" : "3.25.0"
+    }
+}
