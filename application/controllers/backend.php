@@ -295,7 +295,7 @@ class Backend extends CI_Controller
 
         $user_id = $this->input->post('user_id');
         $amount = $_POST['amount'];
-        $count = (int)$this->input->post('count');
+        $count = $this->input->post('count');
 
         $result = Braintree_Transaction::sale([
           'amount' => $amount,
