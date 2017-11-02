@@ -320,7 +320,8 @@ class Backend extends CI_Controller
 
             echo json_encode(array(
                 'status' => "ok",
-                'count' => $tickets
+                'count' => $tickets,
+                'post_count' => $count
             ));
 
 
