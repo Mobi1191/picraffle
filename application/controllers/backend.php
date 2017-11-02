@@ -283,5 +283,40 @@ class Backend extends CI_Controller
             'token' => $token
         ));
     }
+
+    public function maketransaction()
+    {
+
+        Braintree_Configuration::environment('sandbox');
+        Braintree_Configuration::merchantId('68by6yqnx2v7kdyc');
+        Braintree_Configuration::publicKey('dkg4smxkwt5cqzfb');
+        Braintree_Configuration::privateKey('d071d4c3780a2850b4347221abc69746');
+
+        $user_id = $this->input->post('user_id');
+        $amount = $_POST['amount'];
+
+        $result = Braintree_Transaction::sale([
+          'amount' => $amount,
+          'paymentMethodNonce' => $_POST['payment_method_nonce'],
+          'options' => [
+            'submitForSettlement' => true
+          ]
+        ]);
+
+        if($result->success === true){
+
+            $this->user_transaction_model->addTransactionHistory($user_id, $amount);
+
+            echo json_encode(array(
+                'status' => "ok"
+            ));
+
+
+        } else{
+            echo json_encode(array(
+                'status' => "fail"
+            ));
+        }
+    }
             
 }

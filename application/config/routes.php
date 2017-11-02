@@ -100,3 +100,4 @@ $route['backend/getpastwinners'] = 'backend/getpastwinners';
 $route['backend/gettodaycontestinfo'] = 'backend/gettodaycontestinfo';
 $route['backend/contestupload'] = 'backend/contestupload';
 $route['backend/getbraintreetoken'] = 'backend/getbraintreetoken';
+$route['backend/maketransaction'] = 'backend/maketransaction';
