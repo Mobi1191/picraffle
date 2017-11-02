@@ -295,7 +295,7 @@ class Backend extends CI_Controller
 
         $user_id = $this->input->post('user_id');
         $amount = $_POST['amount'];
-        $count = $this->input->post('count');
+        $count = (int)$this->input->post('count');
 
         $result = Braintree_Transaction::sale([
           'amount' => $amount,
@@ -311,17 +311,17 @@ class Backend extends CI_Controller
 
             $user = $this->user_model->getUserInfo($user_id)[0];
 
-            $tickets = $user->tickets;//+$count;
+            $tickets = $user->tickets+$count;
 
             $data['tickets'] = $tickets;
-            //$this->user_model->editUser($data, $user_id);
+            $this->user_model->editUser($data, $user_id);
 
 
 
             echo json_encode(array(
                 'status' => "ok",
-                'count' => $tickets,
-                'post_count' => $count
+                'count' => $tickets
+                // 'post_count' => $count
             ));
 
 
