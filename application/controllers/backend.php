@@ -11,6 +11,7 @@ class Backend extends CI_Controller
         $this->load->model('contest_model');
         $this->load->model('ticket_model');
         $this->load->model('login_model');
+        $this->load->model('user_transaction_model');
     }
 
     public function login()
