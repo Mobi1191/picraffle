@@ -332,5 +332,21 @@ class Backend extends CI_Controller
             ));
         }
     }
+
+    public function getuserinfo()
+    {
+        $user_id = $this->input->post('user_id');
+        $user = $this->user_model->getUserInfo($user_id)[0];
+        if(count($user) == 0)
+        {
+            $data['success'] = 0;
+            $data['msg'] = 'There is no user with this id';
+            echo json_encode($data);
+        }
+        else {
+            $data['success'] = 1;
+            $data['msg'] = $user;
+        }
+    }
             
 }
