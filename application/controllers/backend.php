@@ -311,7 +311,7 @@ class Backend extends CI_Controller
 
             $user = $this->user_model->getUserInfo($user_id)[0];
 
-            $tickets = $user->tickets//+$count;
+            $tickets = $user->tickets;//+$count;
 
             $data['tickets'] = $tickets;
             //$this->user_model->editUser($data, $user_id);
