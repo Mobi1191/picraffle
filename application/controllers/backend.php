@@ -308,9 +308,20 @@ class Backend extends CI_Controller
 
             $this->user_transaction_model->addTransactionHistory($user_id, $amount);
 
+            $user = $this->user_model->getUserInfo($user_id)[0];
+
+            $tickets = $user->tickets+$this->input->post('count');
+
+            $data['tickets'] = $tickets;
+            $this->user_model->editUser($data, $user_id);
+
+
+
             echo json_encode(array(
-                'status' => "ok"
+                'status' => "ok",
+                'count' => $tickets
             ));
+
 
 
         } else{
