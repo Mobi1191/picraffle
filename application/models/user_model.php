@@ -212,6 +212,12 @@ class User_model extends CI_Model
         $this->db->where('userId',$user_id);
         $this->db->update($this->table_name,array('name'=>$user_name));
     }
+
+    function changeUserEmail($user_id, $user_email)
+    {
+        $this->db->where('userId',$user_id);
+        $this->db->update($this->table_name,array('email'=>$user_email));   
+    }
 }
 
   

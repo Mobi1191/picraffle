@@ -103,3 +103,4 @@ $route['backend/getbraintreetoken'] = 'backend/getbraintreetoken';
 $route['backend/maketransaction'] = 'backend/maketransaction';
 $route['backend/getuserinfo'] = 'backend/getuserinfo';
 $route['backend/changeusername'] = 'backend/changeusername';
+$route['backend/changeemail'] = 'backend/changeemail';
