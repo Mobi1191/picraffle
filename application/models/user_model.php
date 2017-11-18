@@ -206,6 +206,12 @@ class User_model extends CI_Model
         $query = $this->db->get($this->table_name);
         return $query->result();
     }
+
+    function changeUserName($user_id, $user_name)
+    {
+        $this->db->where('userId',$user_id);
+        $this->db->update($this->table_name,array('name'=>$user_name));
+    }
 }
 
   

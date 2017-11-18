@@ -346,7 +346,19 @@ class Backend extends CI_Controller
         else {
             $data['success'] = 1;
             $data['msg'] = $user;
+            echo json_encode($data);
         }
+    }
+
+    public function changeusername()
+    {
+        $user_id = $this->input->post('user_id');
+        $user_name = $this->input->post('user_name');
+        $this->user_model->changeUserName($user_id, $user_name);
+        $data['success'] = 1;
+        $data['msg'] = "User Name is changed successfully.";
+        echo json_encode($data);
+
     }
             
 }
