@@ -218,6 +218,12 @@ class User_model extends CI_Model
         $this->db->where('userId',$user_id);
         $this->db->update($this->table_name,array('email'=>$user_email));   
     }
+
+    function deleteuserbyid($user_id)
+    {
+        $this->db->where('userId', $user_id);
+        $this->db->update($this->table_name,array('isDeleted' => 1));
+    }
 }
 
   

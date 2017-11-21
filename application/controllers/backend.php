@@ -12,6 +12,7 @@ class Backend extends CI_Controller
         $this->load->model('ticket_model');
         $this->load->model('login_model');
         $this->load->model('user_transaction_model');
+        $this->load->model('dev_model');
     }
 
     public function login()
@@ -370,5 +371,47 @@ class Backend extends CI_Controller
         echo json_encode($data);
     }
     
-            
+    public function changepassword()
+    {
+        $old_pass = $this->input->post('old_pass');
+        $new_pass = $this->input->post('new_pass');
+        $user_id  = $this->input->post('user_id');
+
+        $user = $this->user_model->getUserInfo($user_id);
+        if(verifyHashedPassword($old_pass, $user[0]->password))
+        {
+            $this->user_model->changePassword($user_id, array('password'=>getHashedPassword($new_pass)));
+            $data['success'] = 1;
+            $data['msg'] = "Password is changed successfully!";
+            echo json_encode($data);
+            exit();
+        }
+        else{
+            $data['success'] = 0;
+            $data['msg'] = "Current Password is not matched!";
+            echo json_encode($data);
+            exit();
+        }
+    }
+
+    public function deleteuser()
+    {
+        $user_id = $this->input->post('user_id');            
+        $result = $this->user_model->deleteuserbyid($user_id);
+        $data['success'] = 1;
+        $data['msg'] = "User is deleted.";
+        echo json_encode($data);
+        exit();
+    }
+
+    public function addDeviceToken()
+    {
+        $dev_token = $this->input->post('dev_token');
+        $result = $this->dev_model->getDeviceInfo($dev_token);
+
+        if(count($result) == 0)
+        {
+            $this->dev_model->addNewDevice($dev_token);
+        }
+    }
 }

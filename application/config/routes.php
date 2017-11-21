@@ -89,6 +89,9 @@ $route['admin/todaycontest'] = 'admin/todaycontest';
 $route['admin/editcontest'] = 'admin/editcontest';
 $route['admin/viewcontest/(:num)'] = 'admin/viewcontest/$1';
 $route['admin/own/(:num)/(:num)/(:num)'] = 'admin/own/$1/$2/$3';
+$route['admin/notification'] = 'admin/notification';
+$route['admin/send_notification'] = 'admin/sendNotification';
+$route['admin/edit_notification'] = 'admin/editNotification';
 
 
 /*backend*/
@@ -104,3 +107,6 @@ $route['backend/maketransaction'] = 'backend/maketransaction';
 $route['backend/getuserinfo'] = 'backend/getuserinfo';
 $route['backend/changeusername'] = 'backend/changeusername';
 $route['backend/changeemail'] = 'backend/changeemail';
+$route['backend/changepassword'] = 'backend/changepassword';
+$route['backend/deleteuser'] = 'backend/deleteuser';
+$route['backend/adddevicetoken'] = 'backend/addDeviceToken';

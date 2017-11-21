@@ -31,7 +31,7 @@
 
                                 <div class="col-md-6">                                
                                     <div class="form-group">
-                                        <label for="fname">Price for One Ticket</label>
+                                        <label for="fname">1 Ticket</label>
                                         <input type="number" class="form-control" id="price_for_one_ticket" placeholder="Enter Price One Ticket" name="price_one_ticket" value="<?=$contest->price_one_ticket?>" maxlength="10" min="0" disabled>
                                         
                                     </div>
@@ -45,28 +45,28 @@
                             	
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label for="mobile">30 Tickets</label>
+                                        <label for="mobile">5 Tickets</label>
                                         <input type="number" class="form-control" id="30_tickets_price" placeholder="30 Tickets Price" name="30_tickets_price" value="<?=$contest->t30_tickets_price?>" maxlength="10" disabled>
                                     </div>
                                 </div>
                                 
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label for="mobile">70 Tickets</label>
+                                        <label for="mobile">10 Tickets</label>
                                         <input type="number" class="form-control" id="70_tickets_price" placeholder="70 Tickets Price" name="70_tickets_price" value="<?=$contest->t70_tickets_price?>" maxlength="10" disabled>
                                     </div>
                                 </div>
 
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label for="mobile">120 Tickets</label>
+                                        <label for="mobile">20 Tickets</label>
                                         <input type="number" class="form-control" id="120_tickets_price" placeholder="120 Tickets Price" name="120_tickets_price" value="<?=$contest->t120_tickets_price?>" maxlength="10" disabled>
                                     </div>
                                 </div>
 
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label for="mobile">200 Tickets</label>
+                                        <label for="mobile">50 Tickets</label>
                                         <input type="number" class="form-control" id="200_tickets_price" placeholder="250 Tickets Price" name="200_tickets_price" value="<?=$contest->t200_tickets_price?>" maxlength="10" disabled>
                                     </div>
                                 </div>

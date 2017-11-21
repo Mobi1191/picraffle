@@ -19,7 +19,7 @@
 	                	<input type="hidden" name="contest_id" value="<?=$today_contest->contest_id?>">
                         <div class="box-body">
                             <div class="row">
-                                <div class="col-md-6">                                
+                                <div class="col-md-12">                                
                                     <div class="form-group">
                                         <label for="fname">Today's Prize</label>
                                         <input type="number" class="form-control" id="prize" placeholder="Enter Prize" name="prize" value="<?=$today_contest->prize?>" maxlength="10" min="0">
@@ -28,44 +28,46 @@
                                     
                                 </div>
 
-                                <div class="col-md-6">                                
-                                    <div class="form-group">
-                                        <label for="fname">Price for One Ticket</label>
-                                        <input type="number" class="form-control" id="price_for_one_ticket" placeholder="Enter Price One Ticket" name="price_one_ticket" value="<?=$today_contest->price_one_ticket?>" maxlength="10" min="0">
-                                        
-                                    </div>
-                                    
-                                </div>
+                                
                                
                             </div>
                             
                             <div class="row">
                             	<h2 style="padding-left: 15px;">Tickets Prices</h2>
                             	
+                                <div class="col-md-3">                                
+                                    <div class="form-group">
+                                        <label for="fname">1 Ticket</label>
+                                        <input type="number" class="form-control" id="price_for_one_ticket" placeholder="Enter Price One Ticket" name="price_one_ticket" value="<?=$today_contest->price_one_ticket?>" maxlength="10" min="0">
+                                        
+                                    </div>
+                                    
+                                </div>
+
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label for="mobile">30 Tickets</label>
+                                        <label for="mobile">5 Tickets</label>
                                         <input type="number" class="form-control" id="30_tickets_price" placeholder="30 Tickets Price" name="30_tickets_price" value="<?=$today_contest->t30_tickets_price?>" maxlength="10">
                                     </div>
                                 </div>
                                 
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label for="mobile">70 Tickets</label>
+                                        <label for="mobile">10 Tickets</label>
                                         <input type="number" class="form-control" id="70_tickets_price" placeholder="70 Tickets Price" name="70_tickets_price" value="<?=$today_contest->t70_tickets_price?>" maxlength="10">
                                     </div>
                                 </div>
 
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label for="mobile">120 Tickets</label>
+                                        <label for="mobile">20 Tickets</label>
                                         <input type="number" class="form-control" id="120_tickets_price" placeholder="120 Tickets Price" name="120_tickets_price" value="<?=$today_contest->t120_tickets_price?>" maxlength="10">
                                     </div>
                                 </div>
 
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label for="mobile">200 Tickets</label>
+                                        <label for="mobile">50 Tickets</label>
                                         <input type="number" class="form-control" id="200_tickets_price" placeholder="250 Tickets Price" name="200_tickets_price" value="<?=$today_contest->t200_tickets_price?>" maxlength="10">
                                     </div>
                                 </div>

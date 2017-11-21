@@ -10,6 +10,8 @@ class Admin extends BaseController
         $this->load->model('user_model');
         $this->load->model('contest_model');
         $this->load->model('ticket_model');
+        $this->load->model('noti_model');
+        $this->load->model('dev_model');
         $this->isLoggedIn();   
         if($this->isAdmin() == TRUE)
         {
@@ -129,6 +131,74 @@ class Admin extends BaseController
         redirect('admin/todaycontest');
     }
 
+    public function notification()
+    {
+        $this->global['pageTitle'] = 'Admin : Notification';
+        $this->global['notifications'] = $this->noti_model->getAllNotifications();
+        $this->loadViews("admin/notification", $this->global, NULL , NULL);
+    }
+
+    public function sendNotification()
+    {
+        $noti_content = $this->input->post('noti_content');
+       
+
+        // send notification
+        $data['noti_content'] = $noti_content;
+        $data['noti_type'] = 'other';
+        $result = $this->noti_model->addNotification($data);
+        $data['id'] = $result;
+        $this->sendNotificationMessage($data);
+        redirect('admin/notification');
+    }
+
+    public function editNotification()
+    {
+        $noti_id = $this->input->post('noti_id');
+        $noti_content = $this->input->post('noti_content');
+        $this->noti_model->editNotification($noti_id, $noti_content);
+        
+        $data['noti_content'] = $noti_content;
+        $data['noti_type'] = 'other';
+        $data['id'] = $noti_id;
+        $this->sendNotificationMessage($data);
+        redirect('admin/notification');
+    }
+
+    public function sendNotificationMessage($data)
+    {
+        $devices = $this->dev_model->getAllDevices();
+        //var_dump($devices);
+        $ctx = stream_context_create();
+        stream_context_set_option($ctx, 'ssl', 'local_cert', 'picrafflepem.pem'); 
+        //stream_context_set_option($ctx, 'ssl', 'passphrase', $passphrase);
+        //stream_context_set_option($ctx, 'ssl', 'passphrase', 'song');
+        $fp = stream_socket_client('ssl://gateway.sandbox.push.apple.com:2195', $err,$errstr, 60, STREAM_CLIENT_CONNECT, $ctx);
+        if (!$fp)
+            exit("Failed to connect: $err $errstr" . PHP_EOL);
+           
+            // Create the payload body
+            $body['aps'] = array(
+                'alert' => $data['noti_content'],
+                'sound' => 'default',
+                'type'  => $data['noti_type'],
+                'id'    => $data['id']
+            );
+            // Encode the payload as JSON
+            $payload = json_encode($body);
+
+        foreach ($devices as $device)
+        {
+            $deviceToken= $device['dev_token']; 
+                // Change 2 : If any
+                
+            $msg = chr(0) . pack('n', 32) . pack('H*', $deviceToken) . pack('n', strlen($payload)) . $payload;
+                // Send it to the server
+            fwrite($fp, $msg, strlen($msg));
+
+        }
+        fclose($fp);
+    }
 }
 
 

@@ -139,9 +139,9 @@
               </a>
             </li>
             <li class="treeview">
-              <a href="#" >
+              <a href="/admin/notification" >
                 <i class="fa fa-files-o"></i>
-                <span>Reports</span>
+                <span>Notifications</span>
               </a>
             </li>
             <?php
