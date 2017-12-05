@@ -38,6 +38,12 @@ class Admin extends BaseController
         {
             $inserted_id = $this->contest_model->createTodayContest();            
             $today_contest = $this->contest_model->getTodayContest();
+           
+            $data['noti_content'] = "Today contest is created.";
+            $data['noti_type'] = 'create_contest';
+            $noti_id = $this->noti_model->addNotification($data);
+            $data['id'] = $noti_id;
+            $this->sendNotificationMessage($data);
         }
 
         $this->global['all_todays_tickets'] = $this->ticket_model->getAllTodayTickets();
@@ -128,6 +134,11 @@ class Admin extends BaseController
         $this->contest_model->own($ticket_id, $user_id, $contest_id);
 
         $this->session->set_flashdata('success', 'Selected Owner Successfully!');
+         $user = $this->user_model->getUserInfo($user_id)[0];
+        $data['noti_content'] = $user->name." is owned today!";
+        $data['noti_type'] = 'picked_own';
+        $data['id'] = $noti_id;
+        $this->sendNotificationMessage($data);
         redirect('admin/todaycontest');
     }
 
@@ -142,7 +153,6 @@ class Admin extends BaseController
     {
         $noti_content = $this->input->post('noti_content');
        
-
         // send notification
         $data['noti_content'] = $noti_content;
         $data['noti_type'] = 'other';

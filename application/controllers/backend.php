@@ -225,6 +225,18 @@ class Backend extends CI_Controller
         $uploadfile = $uploaddir.$dest_filename;
         $file_name = $dest_filename;
       
+        $user = $this->user_model->getUserInfo($user_id)[0];
+
+        if($user->tickets == "0")
+        {
+            $data_return = array(
+                'success'       => '0',
+                'msg'           => array('error' => 'Tickets is not enough. Please buy tickets')
+            );
+            echo json_encode($data_return);
+            exit(); 
+        }
+
         if(move_uploaded_file($_FILES['image']['tmp_name'], $uploadfile))
         {
             $contest = $this->contest_model->getTodayContest()[0];
@@ -236,6 +248,9 @@ class Backend extends CI_Controller
             $result = $this->ticket_model->addNewTicket($data);
             if($result)
             {
+               
+               $user_info['tickets'] = $user->tickets-1;
+               $this->user_model->changeUserInfo($user->userId, $user_info);
                $data_return = array(
                     'success'       => '1',
                     'msg'           => array('success' => "Image uploding is done successfully.")

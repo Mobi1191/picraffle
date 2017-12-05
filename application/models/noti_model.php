@@ -23,4 +23,19 @@ class Noti_model extends CI_Model
 		$this->db->where('noti_id',$noti_id);
 		$this->db->update($this->table_name,  array('noti_content' =>$noti_content));
 	}
+
+	function getLastNotification(){
+     $this->db->order_by("noti_id", "desc");
+     $this->db->limit(1);
+     $query = $this->db->get($this->table_name);
+
+     $res = $this->db->result($query);
+
+     if(count($res) == 0) 
+     {
+        return $res[0];
+     }
+    	return false;
+    }
+
 }

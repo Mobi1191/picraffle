@@ -224,6 +224,14 @@ class User_model extends CI_Model
         $this->db->where('userId', $user_id);
         $this->db->update($this->table_name,array('isDeleted' => 1));
     }
+
+    function changeUserInfo($user_id, $user_info)
+    {
+        $this->db->where('userId', $user_id);
+        $this->db->where('isDeleted', 0);
+        $this->db->where('roleId', 3);
+        $this->db->update($this->table_name,$user_info);
+    }
 }
 
   
