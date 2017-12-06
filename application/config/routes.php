@@ -110,3 +110,4 @@ $route['backend/changeemail'] = 'backend/changeemail';
 $route['backend/changepassword'] = 'backend/changepassword';
 $route['backend/deleteuser'] = 'backend/deleteuser';
 $route['backend/adddevicetoken'] = 'backend/addDeviceToken';
+$route['backend/changeuserphoto'] = 'backend/changeUerPhoto';

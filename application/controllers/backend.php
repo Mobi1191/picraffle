@@ -217,6 +217,7 @@ class Backend extends CI_Controller
     {
         $user_id = $this->input->post('user_id');
         $contest_id = $this->input->post('contest_id');
+        $location = $this->input->post('location');
         $data = array();
         $uploaddir = './assets/uploads/';
         $path = $_FILES['image']['name'];
@@ -244,6 +245,7 @@ class Backend extends CI_Controller
             $data['image_name'] = $file_name;
             $data['user_id'] = $user_id;
             $data['contest_id'] = $contest_id;
+            $data['location'] = $location;
 
             $result = $this->ticket_model->addNewTicket($data);
             if($result)
@@ -404,6 +406,34 @@ class Backend extends CI_Controller
         else{
             $data['success'] = 0;
             $data['msg'] = "Current Password is not matched!";
+            echo json_encode($data);
+            exit();
+        }
+    }
+
+    public function changeUerPhoto()
+    {
+        $user_id  = $this->input->post('user_id');
+        $user = $this->user_model->getUserInfo($user_id)[0];
+
+        $uploaddir = './assets/account_image/';
+        $path = $_FILES['image']['name'];
+        $ext = pathinfo($path, PATHINFO_EXTENSION);
+        $dest_filename = md5(uniqid(rand(),true)).'.'.$ext;
+        $uploadfile = $uploaddir.$dest_filename;
+        $file_name = $dest_filename;
+
+        if(move_uploaded_file($_FILES['image']['tmp_name'], $uploadfile))
+        {
+            $this->user_model->editUser(array('account_image_name'=>$file_name), $user_id);
+            $data['success'] = '1';
+            $data['msg'] = "Account Image is changed successfully!";
+            echo json_encode($data);
+            exit();
+        }
+        else{
+            $data['success'] = '0';
+            $data['msg'] = "Account Image is not changed!";
             echo json_encode($data);
             exit();
         }
