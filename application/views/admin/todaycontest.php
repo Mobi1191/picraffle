@@ -4,6 +4,7 @@
         <i class="fa fa-tachometer" aria-hidden="true"></i>Today's Contests
         <small><?=date('Y-m-d')?></small>
         <a href="<?=base_url('admin/contests')?>" class="btn btn-success">All Contests</a>
+        <div id="countdown"></div>
       </h1>
     </section>
     
@@ -18,6 +19,36 @@
 	                <form role="form" action="<?php echo base_url('admin/editcontest') ?>" method="post" id="editUser" role="form">
 	                	<input type="hidden" name="contest_id" value="<?=$today_contest->contest_id?>">
                         <div class="box-body">
+
+                            <div class="row">
+                                <div class="col-md-12">                                
+                                    <div class="form-group">
+                                        <label for="fname">Contest Duration</label>
+                                        <input type="text" name="duration" id="contest_duration" value="<?=$today_contest->duration?>">
+                                       
+                                        <h1>
+                                            <?php
+                                                $till_time =strtotime($today_contest->duration);
+                                                $t_hours = date('H', $till_time);
+                                                $t_mins = date('i', $till_time);
+                                                $t_secs = date('s', $till_time);
+                                                $t_seconds = $t_hours*3600+$t_mins*60+$t_secs;
+
+                                                $c_hours = date('H');
+                                                $c_mins = date('i');
+                                                $c_secs = date('s');
+                                                $c_seconds = $c_hours*3600+$c_mins*60+$c_secs;
+
+                                                $gap_seconds = $t_seconds-$c_seconds;
+                                            ?>
+                                        </h1>
+                                    </div>
+                                    
+                                </div>
+
+
+                            </div>
+
                             <div class="row">
                                 <div class="col-md-12">                                
                                     <div class="form-group">
@@ -27,9 +58,6 @@
                                     </div>
                                     
                                 </div>
-
-                                
-                               
                             </div>
                             
                             <div class="row">
@@ -80,6 +108,7 @@
                             <input type="reset" class="btn btn-default" value="Reset" />
                         </div>
                     </form>
+
 	            </div>
         	</div>
 
@@ -191,4 +220,23 @@
         var src = $(this).data('src');
         $("#pic_ok_btn").attr('href',src);
     });
+
+    $("#contest_duration").timepicker({
+        timeFormat: 'HH:mm:ss'
+    });
+
+
+    var clock = $('#countdown').FlipClock({
+        clockFace: 'HourlyCounter',
+        autoStart: false,
+        callbacks: {
+            stop: function() {
+               
+            }
+        }
+    });
+                    
+    clock.setTime(<?=$gap_seconds?>);
+    clock.setCountdown(true);
+    clock.start();
 </script>

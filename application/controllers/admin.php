@@ -102,6 +102,7 @@ class Admin extends BaseController
             $t70_tickets_price  = $this->input->post('70_tickets_price');
             $t120_tickets_price = $this->input->post('120_tickets_price');
             $t200_tickets_price = $this->input->post('200_tickets_price');
+            $duration = $this->input->post('duration');
 
             $data = array(
                 'prize'             => $prize,
@@ -109,7 +110,8 @@ class Admin extends BaseController
                 't70_tickets_price' => $t70_tickets_price,
                 't120_tickets_price' => $t120_tickets_price,
                 't200_tickets_price' => $t200_tickets_price,
-                'price_one_ticket'  => $price_one_ticket
+                'price_one_ticket'  => $price_one_ticket,
+                'duration'          => $duration
             );
 
             $result = $this->contest_model->updateDataWhereId($contest_id, $data);
