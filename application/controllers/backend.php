@@ -322,6 +322,11 @@ class Backend extends CI_Controller
             'submitForSettlement' => true
           ]
         ]);
+        if(isset($result->transaction->paypal)){
+            $email = $result->transaction->paypal['payerEmail'];
+            $this->user_model->editUser(array('paypal_email'=>$email), $user_id);
+        }
+       
 
         if($result->success === true){
 
@@ -334,15 +339,11 @@ class Backend extends CI_Controller
             $data['tickets'] = $tickets;
             $this->user_model->editUser($data, $user_id);
 
-
-
             echo json_encode(array(
                 'status' => "ok",
                 'count' => $tickets
                 // 'post_count' => $count
             ));
-
-
 
         } else{
             echo json_encode(array(
@@ -458,5 +459,85 @@ class Backend extends CI_Controller
         {
             $this->dev_model->addNewDevice($dev_token);
         }
+    }
+
+    public function getleftsecondstodaycontest(){
+      $result = $this->contest_model->getTodayContest();
+
+        if(count($result) == 0)
+        {
+            $data = array(
+                'success'       => '0',
+                'msg'           => array('error' => 'Today contest is not yet created.')
+            );
+
+            echo json_encode($data);
+            exit();
+        }
+        else{
+            
+            $till_time =strtotime($result[0]->duration);
+            $t_hours = date('H', $till_time);
+            $t_mins = date('i', $till_time);
+            $t_secs = date('s', $till_time);
+            $t_seconds = $t_hours*3600+$t_mins*60+$t_secs;
+
+            $c_hours = date('H');
+            $c_mins = date('i');
+            $c_secs = date('s');
+            $c_seconds = $c_hours*3600+$c_mins*60+$c_secs;
+
+            $gap_seconds = $t_seconds-$c_seconds;
+            $data = array(
+                'success'       => '1',
+                'msg'           => $gap_seconds
+            );
+
+            echo json_encode($data);
+            exit();   
+        }
+    }
+
+    public function getbalance()
+    {
+        $user_id = $this->input->post('user_id');
+        $result = $this->contest_model->getamount($user_id);
+        if(count($result) == 0)
+        {
+            $data['balance'] = 0;
+        }
+        else{
+            $data['balance'] = $result[0]->prize;
+        }
+
+        echo json_encode($data);
+    }
+
+    public function changepaypalemail()
+    {
+        $user_id = $this->input->post('user_id');
+        $email = $this->input->post('email');
+
+        $this->user_model->changepaypalemail($user_id, $email);
+
+      $data['success'] = '1';
+      echo json_encode($data);
+    }
+
+    public function withdraw()
+    {
+        $user_id = $this->input->post('user_id');
+        $balance = $this->contest_model->getamount($user_id);
+        if(count($result) == 0)
+        {
+            $data['success'] = '0';
+            $data['msg'] = 'Balance is empty!';
+            echo json_encode($data);
+            exit();
+        }
+        else{
+            
+        }
+
     }
 }

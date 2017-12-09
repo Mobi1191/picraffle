@@ -73,6 +73,15 @@ class Contest_model extends CI_Model
 		);
 		$this->db->update($this->table_name, $data);
 	}
+
+	public function getamount($user_id)
+	{
+		$this->db->where('owner', $user_id);
+		$this->db->where('pending_status','owned');
+		$this->db->select_sum('prize');
+		$query = $this->db->get($this->table_name);
+		return $query->result();	
+	}
 }
 
 ?>

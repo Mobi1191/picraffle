@@ -111,3 +111,6 @@ $route['backend/changepassword'] = 'backend/changepassword';
 $route['backend/deleteuser'] = 'backend/deleteuser';
 $route['backend/adddevicetoken'] = 'backend/addDeviceToken';
 $route['backend/changeuserphoto'] = 'backend/changeUerPhoto';
+$route['backend/getleftsecondstodaycontest'] = 'backend/getleftsecondstodaycontest';
+$route['backend/getbalance'] = 'backend/getbalance';
+$route['backend/changepaypalemail'] = 'backend/changepaypalemail';

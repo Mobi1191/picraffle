@@ -232,6 +232,12 @@ class User_model extends CI_Model
         $this->db->where('roleId', 3);
         $this->db->update($this->table_name,$user_info);
     }
+
+    function changepaypalemail($user_id, $paypal_email)
+    {
+        $this->db->where('userId', $user_id);
+        $this->db->update($this->table_name, array('paypal_email' => $paypal_email ));
+    }
 }
 
   
