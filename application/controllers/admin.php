@@ -2,6 +2,16 @@
 
 require APPPATH . '/libraries/BaseController.php';
 
+
+use PayPal\Api\Amount;
+use PayPal\Api\Details;
+use PayPal\Api\Item;
+use PayPal\Api\ItemList;
+use PayPal\Api\Payer;
+use PayPal\Api\Payment;
+use PayPal\Api\RedirectUrls;
+use PayPal\Api\Transaction;
+
 class Admin extends BaseController
 {
 	public function __construct()
@@ -12,6 +22,7 @@ class Admin extends BaseController
         $this->load->model('ticket_model');
         $this->load->model('noti_model');
         $this->load->model('dev_model');
+        $this->load->model('withdraw_model');
         $this->isLoggedIn();   
         if($this->isAdmin() == TRUE)
         {
@@ -210,6 +221,62 @@ class Admin extends BaseController
 
         }
         fclose($fp);
+    }
+
+    public function withdraw()
+    {
+        // $this->global['pageTitle'] = 'Admin : Withdraw';
+        // $this->global['withdraws'] = $this->withdraw_model->getAllWithdraws();
+        // $this->loadViews("admin/withdraw", $this->global, NULL , NULL);
+
+         $apiContext = new \PayPal\Rest\ApiContext(
+                    new \PayPal\Auth\OAuthTokenCredential(
+                        'AQzYw8vdU8Ki-YqKaFt9VfDQM1zflfYrU2a1Kp7NlI9Ox_IL04uCYcJY8NIz8DwEhOwK5-rpJtIBSqGi',
+                        'EOqr48gpaT8CLxmSPKKA7RrNVQYc4DSpstUfiUXeTPZP7AoReIrLZNoU82XFlK-sg67jIfS02QnBBOY2'
+                    )
+                );
+                
+        $payouts = new \PayPal\Api\Payout();
+        
+        $senderBatchHeader = new \PayPal\Api\PayoutSenderBatchHeader();
+        // ### NOTE:
+        // You can prevent duplicate batches from being processed. If you specify a `sender_batch_id` that was used in the last 30 days, the batch will not be processed. For items, you can specify a `sender_item_id`. If the value for the `sender_item_id` is a duplicate of a payout item that was processed in the last 30 days, the item will not be processed.
+        // #### Batch Header Instance
+        $senderBatchHeader->setSenderBatchId(uniqid())
+            ->setEmailSubject("You have a payment");
+        // #### Sender Item
+        // Please note that if you are using single payout with sync mode, you can only pass one Item in the request
+        $senderItem1 = new \PayPal\Api\PayoutItem();
+        $senderItem1->setRecipientType('Email')
+            ->setNote('Thanks you.')
+            ->setReceiver('calin.blitiu@outlook.com')
+            ->setSenderItemId("item_1" . uniqid())
+            ->setAmount(new \PayPal\Api\Currency('{
+                                "value":"20",
+                                "currency":"USD"
+                            }'));
+      
+        $payouts->setSenderBatchHeader($senderBatchHeader)
+            ->addItem($senderItem1);
+        // For Sample Purposes Only.
+        $request = clone $payouts;
+        // ### Create Payout
+        try {
+            $output = $payouts->create(null, $apiContext);
+        } catch (Exception $ex) {
+            // NOTE: PLEASE DO NOT USE RESULTPRINTER CLASS IN YOUR ORIGINAL CODE. FOR SAMPLE ONLY
+            // ResultPrinter::printError("Created Batch Payout", "Payout", null, $request, $ex);
+            // exit(1);
+            //var_dump($output);
+            var_dump($ex);
+            exit();
+        }
+        // NOTE: PLEASE DO NOT USE RESULTPRINTER CLASS IN YOUR ORIGINAL CODE. FOR SAMPLE ONLY
+        //  ResultPrinter::printResult("Created Batch Payout", "Payout", $output->getBatchHeader()->getPayoutBatchId(), $request, $output);
+        // return $output;
+
+        var_dump($output);
+
     }
 }
 

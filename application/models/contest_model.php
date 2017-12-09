@@ -82,6 +82,14 @@ class Contest_model extends CI_Model
 		$query = $this->db->get($this->table_name);
 		return $query->result();	
 	}
+
+	public function toPending($user_id)
+	{
+		$this->db->where('owner', $user_id);
+		$this->db->where('pending_status', 'owned');
+		$this->db->set('pending_status', 'pending');
+		$this->db->update($this->table_name);
+	}
 }
 
 ?>

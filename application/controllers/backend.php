@@ -13,6 +13,7 @@ class Backend extends CI_Controller
         $this->load->model('login_model');
         $this->load->model('user_transaction_model');
         $this->load->model('dev_model');
+        $this->load->model('withdraw_model');
     }
 
     public function login()
@@ -502,11 +503,13 @@ class Backend extends CI_Controller
     {
         $user_id = $this->input->post('user_id');
         $result = $this->contest_model->getamount($user_id);
-        if(count($result) == 0)
+        //var_dump($result);
+        if(count($result) == 0 || $result[0]->prize == null)
         {
-            $data['balance'] = 0;
+            $data['balance'] = '0';
         }
         else{
+
             $data['balance'] = $result[0]->prize;
         }
 
@@ -528,7 +531,7 @@ class Backend extends CI_Controller
     {
         $user_id = $this->input->post('user_id');
         $balance = $this->contest_model->getamount($user_id);
-        if(count($result) == 0)
+        if(count($balance) == 0)
         {
             $data['success'] = '0';
             $data['msg'] = 'Balance is empty!';
@@ -536,7 +539,18 @@ class Backend extends CI_Controller
             exit();
         }
         else{
-            
+            $this->contest_model->toPending($user_id);
+            $user = $this->user_model->getUserInfo($user_id)[0];
+            $withdraw_id = $this->withdraw_model->addNewWithdraw(array(
+                'owner_id' => $user_id,
+                'withdraw_amount' => $balance[0]->prize,
+                'withdraw_email' => $user->paypal_email,
+                'withdraw_status' => 'pending'
+            ));
+            $data['success'] = '1';
+            $data['msg'] = 'Your request is pending!';
+            echo json_encode($data);
+            exit();         
         }
 
     }
