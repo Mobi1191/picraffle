@@ -127,7 +127,7 @@
             {
             ?>
             <li class="treeview">
-              <a href="/admin/Withdraw" >
+              <a href="/admin/withdraw" >
                 <i class="fa fa-thumb-tack"></i>
                 <span>Withdraw</span>
               </a>

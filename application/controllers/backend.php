@@ -2,6 +2,15 @@
 
 require APPPATH . '/libraries/BaseController.php';
 
+use PayPal\Api\Amount;
+use PayPal\Api\Details;
+use PayPal\Api\Item;
+use PayPal\Api\ItemList;
+use PayPal\Api\Payer;
+use PayPal\Api\Payment;
+use PayPal\Api\RedirectUrls;
+use PayPal\Api\Transaction;
+
 class Backend extends CI_Controller
 {
 	public function __construct()
@@ -359,12 +368,12 @@ class Backend extends CI_Controller
         $user = $this->user_model->getUserInfo($user_id)[0];
         if(count($user) == 0)
         {
-            $data['success'] = 0;
+            $data['success'] = '0';
             $data['msg'] = 'There is no user with this id';
             echo json_encode($data);
         }
         else {
-            $data['success'] = 1;
+            $data['success'] = '1';
             $data['msg'] = $user;
             echo json_encode($data);
         }
@@ -553,5 +562,13 @@ class Backend extends CI_Controller
             exit();         
         }
 
+    }
+
+    public function changeuserlocation()
+    {
+        $user_id = $this->input->post('user_id');
+        $location = $this->input->post('location');
+
+        $this->user_model->changeuserlocation($user_id, $location);
     }
 }

@@ -238,6 +238,14 @@ class User_model extends CI_Model
         $this->db->where('userId', $user_id);
         $this->db->update($this->table_name, array('paypal_email' => $paypal_email ));
     }
+
+    function changeuserlocation($user_id, $location)
+    {
+        $this->db->where('userId',$user_id);
+        $this->db->update($this->table_name, array(
+            'location' => $location
+        ));
+    }
 }
 
   

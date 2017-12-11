@@ -93,6 +93,7 @@ $route['admin/notification'] = 'admin/notification';
 $route['admin/send_notification'] = 'admin/sendNotification';
 $route['admin/edit_notification'] = 'admin/editNotification';
 $route['admin/withdraw'] = 'admin/withdraw';
+$route['admin/payout/(:num)'] = 'admin/payout/$1';
 
 
 /*backend*/
@@ -116,3 +117,4 @@ $route['backend/getleftsecondstodaycontest'] = 'backend/getleftsecondstodayconte
 $route['backend/getbalance'] = 'backend/getbalance';
 $route['backend/changepaypalemail'] = 'backend/changepaypalemail';
 $route['backend/withdraw'] = 'backend/withdraw';
+$route['backend/changeuserlocation'] = 'backend/changeuserlocation';
