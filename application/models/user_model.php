@@ -246,6 +246,11 @@ class User_model extends CI_Model
             'location' => $location
         ));
     }
+
+    function changeuserdescription($user_id, $description) {
+        $this->db->where('userId', $user_id);
+        $this->db->update($this->table_name, array('description' => $description));
+    }
 }
 
   

@@ -206,7 +206,7 @@ class Backend extends CI_Controller
         {
             $data = array(
                 'success'       => '0',
-                'msg'           => array('error' => 'Today contest is not yet created.')
+                'msg'           => "Today's Contest has not started yet, please try to upload later."
             );
 
             echo json_encode($data);
@@ -570,5 +570,14 @@ class Backend extends CI_Controller
         $location = $this->input->post('location');
 
         $this->user_model->changeuserlocation($user_id, $location);
+    }
+
+    public function changeuserdescription(){
+        $user_id = $this->input->post('user_id');
+        $description = $this->input->post('description');
+        $this->user_model->changeuserdescription($user_id, $description);
+        $data['success'] = '1';
+        $data['msg'] = 'User Description is changed successfully!';
+        echo json_encode($data);
     }
 }
