@@ -176,7 +176,7 @@ class Admin extends BaseController
         $data['noti_type'] = 'other';
         $data['id'] = $noti_id;
         $this->sendNotificationMessage($data);
-        redirect('admin/notification');
+        
     }
 
     public function sendNotificationMessage($data)
@@ -219,6 +219,7 @@ class Admin extends BaseController
 
         }
         fclose($fp);
+        redirect('admin/notification');
     }
 
     public function withdraw()
