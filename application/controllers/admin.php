@@ -208,7 +208,14 @@ class Admin extends BaseController
                 
             $msg = chr(0) . pack('n', 32) . pack('H*', $deviceToken) . pack('n', strlen($payload)) . $payload;
                 // Send it to the server
-            fwrite($fp, $msg, strlen($msg));
+            $result = fwrite($fp, $msg, strlen($msg));
+            if(!$result) {
+                echo "message not deliverd".PHP_EOL;
+                exit();
+            }
+            else{
+
+            }
 
         }
         fclose($fp);
