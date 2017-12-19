@@ -183,6 +183,9 @@ class Admin extends BaseController
     {
         $devices = $this->dev_model->getAllDevices();
         //var_dump($devices);
+
+        foreach ($devices as $device)
+        {
         $ctx = stream_context_create();
         stream_context_set_option($ctx, 'ssl', 'local_cert', 'picrafflepem.pem'); 
         //stream_context_set_option($ctx, 'ssl', 'passphrase', $passphrase);
@@ -201,8 +204,6 @@ class Admin extends BaseController
             // Encode the payload as JSON
             $payload = json_encode($body);
 
-        foreach ($devices as $device)
-        {
             $deviceToken= $device['dev_token']; 
                 // Change 2 : If any
                 
@@ -211,14 +212,17 @@ class Admin extends BaseController
             $result = fwrite($fp, $msg, strlen($msg));
             if(!$result) {
                 echo "message not deliverd".PHP_EOL;
-                exit();
             }
             else{
-
+            echo "message is deliverd".PHP_EOL;
             }
 
-        }
+            //echo $result.PHP_EOL;
+
+      
         fclose($fp);
+
+        }
     }
 
     public function withdraw()
