@@ -50,7 +50,7 @@ class Backend extends CI_Controller
             {
                 $data = array(
                     'success' => '0',
-                    'msg'     => 'Faild user name or password'
+                    'msg'     => 'Invalid user name or password'
                 );
                 echo json_encode($data);
                 exit();   

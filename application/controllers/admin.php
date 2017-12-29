@@ -190,7 +190,7 @@ class Admin extends BaseController
         stream_context_set_option($ctx, 'ssl', 'local_cert', 'picrafflepem.pem'); 
         //stream_context_set_option($ctx, 'ssl', 'passphrase', $passphrase);
         //stream_context_set_option($ctx, 'ssl', 'passphrase', 'song');
-        $fp = stream_socket_client('ssl://gateway.sandbox.push.apple.com:2195', $err,$errstr, 60, STREAM_CLIENT_CONNECT, $ctx);
+        $fp = stream_socket_client('ssl://gateway.push.apple.com:2195', $err,$errstr, 60, STREAM_CLIENT_CONNECT, $ctx);
         if (!$fp)
             exit("Failed to connect: $err $errstr" . PHP_EOL);
            
