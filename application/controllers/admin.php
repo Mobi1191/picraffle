@@ -134,14 +134,23 @@ class Admin extends BaseController
 
     public function own($ticket_id, $user_id, $contest_id)
     {
+        $notification = $this->input->post('notification');
         $this->ticket_model->own($ticket_id, $user_id, $contest_id);
         $this->contest_model->own($ticket_id, $user_id, $contest_id);
 
         $this->session->set_flashdata('success', 'Selected Owner Successfully!');
-         $user = $this->user_model->getUserInfo($user_id)[0];
+        $user = $this->user_model->getUserInfo($user_id)[0];
+        
         $data['noti_content'] = $user->name." is owned today!";
+        
+        if($notification != "") {
+            $data['noti_content'] = $notification;
+        }
+        
         $data['noti_type'] = 'picked_own';
-        $data['id'] = $noti_id;
+
+        $result = $this->noti_model->addNotification($data);
+        $data['id'] = $result;//$noti_id;
         $this->sendNotificationMessage($data);
         redirect('admin/todaycontest');
     }
@@ -211,10 +220,10 @@ class Admin extends BaseController
                 // Send it to the server
             $result = fwrite($fp, $msg, strlen($msg));
             if(!$result) {
-                echo "message not deliverd".PHP_EOL;
+                //echo "message not deliverd".PHP_EOL;
             }
             else{
-            echo "message is deliverd".PHP_EOL;
+                //echo "message is deliverd".PHP_EOL;
             }
 
             //echo $result.PHP_EOL;

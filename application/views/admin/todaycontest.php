@@ -193,7 +193,7 @@
 <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
-
+<form method="post" action="" id="own-form">
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
@@ -202,13 +202,14 @@
       </div>
       <div class="modal-body">
         <p>If you so , Please Click Ok, else cancel.</p>
+        <textarea class="form-control" name="notification"></textarea>
       </div>
       <div class="modal-footer">
-        <a href="" class="btn btn-danger" id="pic_ok_btn">Ok</a>
+        <button type="submit" class="btn btn-danger" id="pic_ok_btn">Ok</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
       </div>
     </div>
-
+</form>
   </div>
 </div>
 	</section>
@@ -218,7 +219,8 @@
     
     $(".pic_ticket").click(function(){
         var src = $(this).data('src');
-        $("#pic_ok_btn").attr('href',src);
+        //$("#pic_ok_btn").attr('href', src);
+        $("#own-form").attr('action', src);
     });
 
     $("#contest_duration").timepicker({
