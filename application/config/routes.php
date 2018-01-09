@@ -119,3 +119,4 @@ $route['backend/changepaypalemail'] = 'backend/changepaypalemail';
 $route['backend/withdraw'] = 'backend/withdraw';
 $route['backend/changeuserlocation'] = 'backend/changeuserlocation';
 $route['backend/changeuserdescription'] = 'backend/changeuserdescription';
+$route['backend/getallnotifications'] = 'backend/getAllNotifications';

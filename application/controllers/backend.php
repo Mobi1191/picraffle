@@ -23,6 +23,7 @@ class Backend extends CI_Controller
         $this->load->model('user_transaction_model');
         $this->load->model('dev_model');
         $this->load->model('withdraw_model');
+        $this->load->model('noti_model');
     }
 
     public function login()
@@ -579,5 +580,20 @@ class Backend extends CI_Controller
         $data['success'] = '1';
         $data['msg'] = 'User Description is changed successfully!';
         echo json_encode($data);
+    }
+
+    public function getAllNotifications() {
+        $result = $this->noti_model->getAllNotifications();
+        if (count($result) == 0) {
+            $data['success'] = "0";
+            $data['msg'] = "There is not any notification.";
+            echo json_encode($data);
+            exit();
+        } else {
+            $data['success'] = "1";
+            $data['msg'] = $result;
+            echo json_encode($data);
+            exit();
+        }
     }
 }
