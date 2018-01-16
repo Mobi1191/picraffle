@@ -599,14 +599,17 @@ class Backend extends CI_Controller
 
     public function deleteTicket() {
         $ticket_id = $this->input->post('ticket_id');
-        $this->ticket_model->deleteTicket($ticket_id);
+        // $this->ticket_model->deleteTicket($ticket_id);
         $this->refundTicket($ticket_id);
 
         $data['success'] = '1';
-        echo json_encode($data);
+        // echo json_encode($data);
     }
 
     public function refundTicket($ticket_id) {
          $isRefundableTickets = $this->ticket_model->isRefundAble($ticket_id);
+         if (count($isRefundableTickets) != 0) {
+            var_dump($isRefundableTickets);
+         }
     }
 }
