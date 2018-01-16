@@ -122,5 +122,12 @@ class Ticket_model extends CI_Model
 		return $query->result();
 	}
 
-	
+	public function deleteTicket($ticket_id) {
+		$this->db->where('ticket_id', $ticket_id);
+		$date = new DateTime();
+		// echo $date->getTimestamp();
+		$timestamp = date('Y-m-d H:i:s',$date->getTimestamp());
+		$this->db->update($this->table_name,array('deletedAt' => , $timestamp));
+		
+	}
 }
