@@ -583,7 +583,9 @@ class Backend extends CI_Controller
     }
 
     public function getAllNotifications() {
+        $user_id = $this->input->post('user_id');
         $result = $this->noti_model->getAllNotifications();
+
         if (count($result) == 0) {
             $data['success'] = "0";
             $data['msg'] = "There is not any notification.";
@@ -591,7 +593,23 @@ class Backend extends CI_Controller
             exit();
         } else {
             $data['success'] = "1";
-            $data['msg'] = $result;
+            
+            $temp = array();
+            foreach ($result as $notification) {
+                $users =explode(',',  $notification['delete_by_user']);
+                $isDeleted = false;
+                foreach ($users as $user) {
+                    if ($user == $user_id) {
+                        $isDeleted = true;
+                        break;
+                    }
+                }
+
+                if (!$isDeleted) {
+                    $temp[] = $notification;
+                }
+            }
+            $data['msg'] = $temp;
             echo json_encode($data);
             exit();
         }
