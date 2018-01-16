@@ -127,7 +127,7 @@ class Ticket_model extends CI_Model
 		$date = new DateTime();
 		// echo $date->getTimestamp();
 		$timestamp = date('Y-m-d H:i:s',$date->getTimestamp());
-		$this->db->update($this->table_name,array('deletedAt' => , $timestamp));
-		
+		$this->db->update($this->table_name,array('deletedAt' =>  $timestamp));
+
 	}
 }
