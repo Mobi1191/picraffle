@@ -599,7 +599,7 @@ class Backend extends CI_Controller
 
     public function deleteTicket() {
         $ticket_id = $this->input->post('ticket_id');
-        $this->refundTicket();
+        $this->refundTicket($ticket_id);
     }
 
     public function refundTicket($ticket_id) {
