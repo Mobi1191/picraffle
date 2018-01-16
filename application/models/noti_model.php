@@ -44,4 +44,8 @@ class Noti_model extends CI_Model
     	return $query->result_array();
     }
 
+    function deleteNotification($noti_id, $data) {
+    	$this->db->where('noti_id',$noti_id);
+    	$this->db->where($this->table_name, $data);
+    }
 }

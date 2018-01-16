@@ -625,7 +625,21 @@ class Backend extends CI_Controller
             echo json_encode($data);
             exit();
         } else {
-            var_dump($notification);
+            if ($notification[0]['delete_by_users'] == '' ) {
+                $savedata['delete_by_users'] = $user_id;
+                $this->noti_model->deleteNotification($noti_id, $savedata);
+
+                $data['success'] = '1';
+                echo json_encode($data);
+                exit();
+            } else {
+                $savedata['delete_by_users'] = $notification[0]['delete_by_users'] . ',' . $user_id;
+                $this->noti_model->deleteNotification($noti_id, $savedata);
+
+                $data['success'] = '1';
+                echo json_encode($data);
+                exit();
+            }
         }
     }
 }
