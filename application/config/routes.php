@@ -95,6 +95,7 @@ $route['admin/edit_notification'] = 'admin/editNotification';
 $route['admin/withdraw'] = 'admin/withdraw';
 $route['admin/payout/(:num)'] = 'admin/payout/$1';
 $route['admin/deleteticket'] = 'admin/deleteTicket';
+$route['admin/deleteticketfromviewcontest'] = 'admin/deleteticketfromviewcontest';
 
 
 /*backend*/

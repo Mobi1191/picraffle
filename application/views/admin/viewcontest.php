@@ -115,8 +115,9 @@
                                         <div style="text-align: center; margin-top: 10px;">
                                             <p>Customer : <?=$ticket->name?></p>
                                             <a href="<?=base_url()?>assets/uploads/<?=$ticket->image_name?>" class="btn btn-primary">View</a>
-
+                                             <a  href="#" data-toggle="modal" data-target="#deleteModal" data-ticket-id="<?=$ticket->ticket_id?>" class="btn btn-danger delete-ticket-btn">Delete</a>
                                         </div>
+
                                     </div>
                                 </div>
                             <?php
@@ -126,3 +127,36 @@
             </div>
     </section>
 </div>
+
+<!-- Modal -->
+<div id="deleteModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+<form method="post" action="<?=base_url()?>admin/deleteticketfromviewcontest" id="own-form">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Do you Want to Delete this Image</h4>
+      </div>
+      <div class="modal-body">
+        <p>If you so , Please Click Ok, else cancel.</p>
+      </div>
+      <input type="hidden" name="del_ticket_id" id="del_ticket_id">
+      <input type="type" name="contest_id" value="<?=$ticket->contest_id?>">
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-danger" id="delete_ok_btn">Ok</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+</form>
+  </div>
+</div>
+
+<script type="text/javascript">
+
+    $(".delete-ticket-btn").click(function(){
+        var ticket_id  = $(this).data('ticket-id');
+        $("#del_ticket_id").val(ticket_id);
+    });
+
+</script>

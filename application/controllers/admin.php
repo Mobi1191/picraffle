@@ -286,6 +286,14 @@ class Admin extends BaseController
         $this->session->set_flashdata('success', 'Selected image was deleted Successfully!');
         redirect('admin/todaycontest');
     }
+
+    public function deleteticketfromviewcontest() {
+        $ticket_id = $this->input->post('del_ticket_id');
+        $contest_id = $this->input->post('contest_id');
+        $this->ticket_model->deleteTicket($ticket_id);
+        $this->session->set_flashdata('success', 'Selected image was deleted Successfully!');
+        redirect('admin/viewcontest/'.$contest_id);
+    }
 }
 
 
