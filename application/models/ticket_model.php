@@ -16,7 +16,7 @@ class Ticket_model extends CI_Model
 		$date = new DateTime("now");
 		$curr_date = $date->format('Y-m-d ');
 		$this->db->where('DATE(contest_date)',$curr_date);
-		$this->db->where('deletedAt', NULL);
+		$this->db->where('ticket_deletedAt', "NULL");
 
 		$this->db->select('*');
 		$this->db->join('tbl_contest', 'tbl_contest.contest_id = tbl_tickets.contest_id');
@@ -51,7 +51,7 @@ class Ticket_model extends CI_Model
 		$this->db->from($this->table_name);
 		
 		$this->db->where('tbl_contest.contest_id', $contest_id);
-		$this->db->where('deletedAt', 'NULL');
+		$this->db->where('ticket_deletedAt', 'NULL');
 
 		$this->db->select('*');
 		$this->db->join('tbl_contest', 'tbl_contest.contest_id = tbl_tickets.contest_id');
@@ -92,7 +92,7 @@ class Ticket_model extends CI_Model
 		$this->db->from($this->table_name);
 		$this->db->where('contest_id', $contest_id);
 		$this->db->where('is_owned', 1);
-		$this->db->where('deletedAt', 'NULL');
+		$this->db->where('ticket_deletedAt', 'NULL');
 
 		$this->db->join('tbl_users', 'tbl_users.userId = tbl_tickets.user_id');
 
@@ -105,7 +105,7 @@ class Ticket_model extends CI_Model
 		$this->db->from($this->table_name);
 		$this->db->select('*');
 		$this->db->where('userId', $user_id);	
-		$this->db->where('deletedAt', 'NULL');	
+		$this->db->where('ticket_deletedAt', 'NULL');	
 		$this->db->join('tbl_contest', 'tbl_contest.contest_id = tbl_tickets.contest_id');
 		$this->db->join('tbl_users', 'tbl_tickets.user_id = tbl_users.userId');
 
@@ -120,7 +120,7 @@ class Ticket_model extends CI_Model
 		$this->db->from($this->table_name);
 		$this->db->select('*');
 		$this->db->where('is_owned',1);		
-		$this->db->where('deletedAt !=', 'NULL');
+		$this->db->where('ticket_deletedAt', 'NULL');
 		$this->db->join('tbl_contest', 'tbl_contest.contest_id = tbl_tickets.contest_id');
 		$this->db->join('tbl_users', 'tbl_tickets.user_id = tbl_users.userId');
 		$query = $this->db->get();
@@ -132,7 +132,7 @@ class Ticket_model extends CI_Model
 		$date = new DateTime();
 		// echo $date->getTimestamp();
 		$timestamp = date('Y-m-d H:i:s',$date->getTimestamp());
-		$this->db->update($this->table_name,array('deletedAt' =>  $timestamp));
+		$this->db->update($this->table_name,array('ticket_deletedAt' =>  $timestamp));
 
 	}
 }
