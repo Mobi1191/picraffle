@@ -120,3 +120,4 @@ $route['backend/withdraw'] = 'backend/withdraw';
 $route['backend/changeuserlocation'] = 'backend/changeuserlocation';
 $route['backend/changeuserdescription'] = 'backend/changeuserdescription';
 $route['backend/getallnotifications'] = 'backend/getAllNotifications';
+$route['backend/deleteticket'] = 'backend/deleteTicket';

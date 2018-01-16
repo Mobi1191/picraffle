@@ -596,4 +596,14 @@ class Backend extends CI_Controller
             exit();
         }
     }
+
+    public function deleteTicket() {
+        //$ticket_id = $this->post->input('ticket_id');
+
+    }
+
+    public function refundTicket($ticket_id) {
+         $todaycontest= $this->ticket_model->getAllTodayTickets();
+         var_dump($todaycontest);
+    }
 }
