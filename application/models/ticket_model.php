@@ -28,6 +28,23 @@ class Ticket_model extends CI_Model
 
 	}
 
+	public function isRefundAble($ticket_id) {
+		$this->db->from($this->table_name);
+		
+		$date = new DateTime("now");
+		$curr_date = $date->format('Y-m-d ');
+		$this->db->where('DATE(contest_date)',$curr_date);
+		$this->db->where('ticket_id', $ticket_id);
+		$this->db->select('*');
+		$this->db->join('tbl_contest', 'tbl_contest.contest_id = tbl_tickets.contest_id');
+
+		$this->db->join('tbl_users', 'tbl_tickets.user_id = tbl_users.userId');
+
+		$query = $this->db->get();
+
+		return $query->result();		
+	}
+
 	public function getTicketsByContestId($contest_id)
 	{
 		$this->db->from($this->table_name);
