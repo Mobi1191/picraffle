@@ -609,7 +609,8 @@ class Backend extends CI_Controller
     public function refundTicket($ticket_id) {
          $isRefundableTickets = $this->ticket_model->isRefundAble($ticket_id);
          if (count($isRefundableTickets) != 0) {
-            var_dump($isRefundableTickets);
+            // var_dump($isRefundableTickets);
+            $this->user_model->refundTicket($isRefundableTickets[0]->userId,$isRefundableTickets[0]->tickets + 1);
          }
     }
 }

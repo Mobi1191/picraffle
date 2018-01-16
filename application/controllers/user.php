@@ -325,6 +325,11 @@ class User extends BaseController
         
         $this->loadViews("404", $this->global, NULL, NULL);
     }
+
+    function refundTicket($userId, $tickets) {
+        $this->db->where('userId', $userId);
+        $this->db->update($this->table_name,array('tickets'=> $tickets));
+    }
 }
 
 ?>
