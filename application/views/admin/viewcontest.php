@@ -80,6 +80,28 @@
         	</div>
 
             <div class="col-md-4">
+                 <?php
+                    $this->load->helper('form');
+                    $error = $this->session->flashdata('error');
+                    if($error)
+                    {
+                ?>
+                <div class="alert alert-danger alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <?php echo $this->session->flashdata('error'); ?>                    
+                </div>
+                <?php } ?>
+                <?php  
+                    $success = $this->session->flashdata('success');
+                    if($success)
+                    {
+                ?>
+                <div class="alert alert-success alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <?php echo $this->session->flashdata('success'); ?>
+                </div>
+                <?php } ?>
+
                 
                 <?php
                     if(count($owned_ticket)>0)
@@ -142,7 +164,7 @@
         <p>If you so , Please Click Ok, else cancel.</p>
       </div>
       <input type="hidden" name="del_ticket_id" id="del_ticket_id">
-      <input type="type" name="contest_id" value="<?=$ticket->contest_id?>">
+      <input type="hidden" name="contest_id" value="<?=$ticket->contest_id?>">
       <div class="modal-footer">
         <button type="submit" class="btn btn-danger" id="delete_ok_btn">Ok</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
