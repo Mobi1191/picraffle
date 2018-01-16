@@ -279,6 +279,10 @@ class Admin extends BaseController
         }
 
     }
+
+    public function deleteTicket() {
+        redirect('admin/todaycontest');
+    }
 }
 
 

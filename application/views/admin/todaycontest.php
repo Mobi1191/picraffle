@@ -218,7 +218,7 @@
 <!-- Modal -->
 <div id="deleteModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
-<form method="post" action="" id="own-form">
+<form method="post" action="<?=base_url()?>admin/deleteticket" id="own-form">
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
@@ -227,8 +227,8 @@
       </div>
       <div class="modal-body">
         <p>If you so , Please Click Ok, else cancel.</p>
-        <textarea class="form-control" name="notification"></textarea>
       </div>
+      <input type="hidden" name="del_ticket_id" id="del_ticket_id">
       <div class="modal-footer">
         <button type="submit" class="btn btn-danger" id="delete_ok_btn">Ok</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
@@ -253,6 +253,10 @@
         timeFormat: 'HH:mm:ss'
     });
 
+
+    $(".delete-ticket-btn").click(function(){
+        $("#del_ticket_id").val($(this).data('data-ticket-id'));
+    });
 
     var clock = $('#countdown').FlipClock({
         clockFace: 'HourlyCounter',
