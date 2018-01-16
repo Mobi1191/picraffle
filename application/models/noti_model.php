@@ -46,6 +46,6 @@ class Noti_model extends CI_Model
 
     function deleteNotification($noti_id, $data) {
     	$this->db->where('noti_id',$noti_id);
-    	$this->db->where($this->table_name, $data);
+    	$this->db->update($this->table_name, $data);
     }
 }
