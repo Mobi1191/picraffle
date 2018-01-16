@@ -593,10 +593,9 @@ class Backend extends CI_Controller
             exit();
         } else {
             $data['success'] = "1";
-            
             $temp = array();
             foreach ($result as $notification) {
-                $users =explode(',',  $notification['delete_by_user']);
+                $users =explode(',',  $notification['delete_by_users']);
                 $isDeleted = false;
                 foreach ($users as $user) {
                     if ($user == $user_id) {
