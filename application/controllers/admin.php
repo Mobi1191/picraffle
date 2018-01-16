@@ -41,7 +41,7 @@ class Admin extends BaseController
             $inserted_id = $this->contest_model->createTodayContest();            
             $today_contest = $this->contest_model->getTodayContest();
            
-            $data['noti_content'] = "Today contest is created.";
+            $data['noti_content'] = "Today’s contest has started , start uploading your pictures!";
             $data['noti_type'] = 'create_contest';
             $noti_id = $this->noti_model->addNotification($data);
             $data['id'] = $noti_id;
