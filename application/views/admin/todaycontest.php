@@ -255,7 +255,7 @@
 
 
     $(".delete-ticket-btn").click(function(){
-        var ticket_id  = $(this).data('data-ticket-id')
+        var ticket_id  = $(this).data('ticket-id');
         $("#del_ticket_id").val(ticket_id);
     });
 
