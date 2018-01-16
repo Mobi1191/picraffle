@@ -613,4 +613,19 @@ class Backend extends CI_Controller
             $this->user_model->refundTicket($isRefundableTickets[0]->userId,$isRefundableTickets[0]->tickets + 1);
          }
     }
+
+    public function deleteNotification() {
+        $noti_id = $this->input->post('noti_id');
+        $user_id = $this->input->post('user_id');
+
+        $notification = $this->noti_model->getNotification($noti_id);
+
+        if(count($notification) == 0){
+            $data['success'] = '0';
+            echo json_encode($data);
+            exit();
+        } else {
+            var_dump($notification);
+        }
+    }
 }

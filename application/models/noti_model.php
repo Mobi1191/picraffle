@@ -38,4 +38,10 @@ class Noti_model extends CI_Model
     	return false;
     }
 
+    function getNotification($noti_id) {
+    	$this->db->where('noti_id', $noti_id);
+    	$query = $this->db->get($this->table_name);
+    	return $query->result_array();
+    }
+
 }
