@@ -251,6 +251,11 @@ class User_model extends CI_Model
         $this->db->where('userId', $user_id);
         $this->db->update($this->table_name, array('description' => $description));
     }
+
+    function refundTicket($userId, $tickets) {
+        $this->db->where('userId', $userId);
+        $this->db->update($this->table_name,array('tickets'=> $tickets));
+    }
 }
 
   
