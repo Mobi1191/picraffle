@@ -179,7 +179,7 @@
                                             <p>Customer : <?=$ticket->name?></p>
                                             <a href="<?=base_url()?>assets/uploads/<?=$ticket->image_name?>" class="btn btn-primary">View</a>
                                             <a  href="#" data-toggle="modal" data-target="#myModal" data-src="<?=base_url()?>admin/own/<?=$ticket->ticket_id?>/<?=$ticket->user_id?>/<?=$ticket->contest_id?>" class="btn btn-success pic_ticket">Own</a>
-                                            <a  href="#" data-toggle="modal" data-target="#deleteModal" data-ticket-id="<?=$ticket->contest_id?>" class="btn btn-danger delete-ticket-btn">Delete</a>
+                                            <a  href="#" data-toggle="modal" data-target="#deleteModal" data-ticket-id="<?=$ticket->ticket_id?>" class="btn btn-danger delete-ticket-btn">Delete</a>
                                         </div>
                                     </div>
                                 </div>
