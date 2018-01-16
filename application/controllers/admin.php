@@ -283,7 +283,8 @@ class Admin extends BaseController
     public function deleteTicket() {
         $ticket_id = $this->input->post('del_ticket_id');
         $this->ticket_model->deleteTicket($ticket_id);
-        redirect('admin/todaycontest');
+        var_dump($ticket_id);
+        //redirect('admin/todaycontest');
     }
 }
 
