@@ -255,7 +255,8 @@
 
 
     $(".delete-ticket-btn").click(function(){
-        $("#del_ticket_id").val($(this).data('data-ticket-id'));
+        var ticket_id  = $(this).data('data-ticket-id')
+        $("#del_ticket_id").val(ticket_id);
     });
 
     var clock = $('#countdown').FlipClock({
