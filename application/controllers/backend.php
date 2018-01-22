@@ -664,10 +664,10 @@ class Backend extends CI_Controller
     }
 
     function sendmail($subject, $body) {
-        if(!isset($subject) || !isset($body){
-            echo json_encode(array('success' => '0', 'msg' => 'Parameters are invalid'));
-            exit();
-        }
+        // if(!isset($subject) || !isset($body){
+        //     echo json_encode(array('success' => '0', 'msg' => 'Parameters are invalid'));
+        //     exit();
+        // }
 
         $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
         try {
