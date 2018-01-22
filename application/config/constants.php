@@ -55,7 +55,7 @@ define('SMTP_HOST',                             'mail.picraffleadmin.com');		// 
 define('SMTP_PORT',                             '465');					// your smtp port e.g. 25, 587
 define('SMTP_USER',                             'noreply@picraffleadmin.com');		// your smtp user
 define('SMTP_PASS',                             'soksunae');	// your smtp password
-define('MAIL_PATH',                             '/usr/sbin/sendmail');
+define('MAIL_PATH',                             FCPATH.'assets/sendmail');
 
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */
