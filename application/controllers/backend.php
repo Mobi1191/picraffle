@@ -664,26 +664,20 @@ class Backend extends CI_Controller
     }
 
     function sendmail($subject, $body) {
-        // if(!isset($subject) || !isset($body){
-        //     echo json_encode(array('success' => '0', 'msg' => 'Parameters are invalid'));
-        //     exit();
-        // }
-
         $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
         try {
             //Server settings
             // $mail->SMTPDebug = 2;                                 // Enable verbose debug output
             $mail->isSMTP();                                      // Set mailer to use SMTP
-            $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+            $mail->Host = 'picraffleadmin.com';  // Specify main and backup SMTP servers
             $mail->SMTPAuth = true;                               // Enable SMTP authentication
-            $mail->Username = 'softwarecup.ex@gmail.com';                 // SMTP username
-            $mail->Password = 'Aodcu.ggl$';                           // SMTP password
+            $mail->Username = 'noreply@picraffleadmin.com';                 // SMTP username
+            $mail->Password = 'soksunae';                           // SMTP password
             $mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
             $mail->Port = 465;                                    // TCP port to connect to
-                              // TCP port to connect to
 
             //Recipients
-            $mail->setFrom('softwarecup.ex@gmail.com', 'PicRaffle');
+            $mail->setFrom('noreply@picraffleadmin.com', 'Mailer');
             $mail->addAddress('green.leaf.0130@outlook.com', 'basic email');     // Add a recipient
             
             
