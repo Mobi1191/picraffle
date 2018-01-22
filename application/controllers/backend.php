@@ -674,12 +674,14 @@ class Backend extends CI_Controller
             //Server settings
             // $mail->SMTPDebug = 2;                                 // Enable verbose debug output
             $mail->isSMTP();                                      // Set mailer to use SMTP
-            $mail->Host = 'picraffleadmin.com';  // Specify main and backup SMTP servers
-            $mail->SMTPAuth = true;                               // Enable SMTP authentication
+            $mail->Host = 'mail.picraffleadmin.com';  // Specify main and backup SMTP servers
+            // $mail->SMTPAuth = true;                               // Enable SMTP authentication
             $mail->Username = 'noreply@picraffleadmin.com';                 // SMTP username
             $mail->Password = 'soksuane';                           // SMTP password
-            $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-            $mail->Port = 465;                                    // TCP port to connect to
+            // $mail->SMTPSecure = 'tls';
+            $mail->SMTPAuth = false;
+            $mail->SMTPSecure = false;                            // Enable TLS encryption, `ssl` also accepted
+            $mail->Port = 25;                                    // TCP port to connect to
 
             //Recipients
             $mail->setFrom('noreply@picraffleadmin.com', 'PicRaffle');
