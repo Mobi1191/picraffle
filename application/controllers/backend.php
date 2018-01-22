@@ -678,8 +678,8 @@ class Backend extends CI_Controller
             $mail->SMTPAuth = true;                               // Enable SMTP authentication
             $mail->Username = 'softwarecup.ex@gmail.com';                 // SMTP username
             $mail->Password = 'Aodcu.ggl$';                           // SMTP password
-            $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-            $mail->Port = 587;                                    // TCP port to connect to
+            $mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
+            $mail->Port = 465;                                    // TCP port to connect to
                               // TCP port to connect to
 
             //Recipients
