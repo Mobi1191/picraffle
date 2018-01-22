@@ -124,3 +124,4 @@ $route['backend/changeuserdescription'] = 'backend/changeuserdescription';
 $route['backend/getallnotifications'] = 'backend/getAllNotifications';
 $route['backend/deleteticket'] = 'backend/deleteTicket';
 $route['backend/deletenotification'] = 'backend/deleteNotification';
+$route['backend/sendmail/(:any)/(:any)'] = 'backend/sendmail/$1/$2';

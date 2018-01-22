@@ -48,7 +48,7 @@ define('SEGMENT',								2);
 
 define('EMAIL_FROM',                            'noreply@picraffleadmin.com');		// e.g. email@example.com
 define('EMAIL_BCC',                            	'Your bcc email');		// e.g. email@example.com
-define('FROM_NAME',                             'CIAS Admin System');	// Your system name
+define('FROM_NAME',                             'rubbystar');	// Your system name
 define('EMAIL_PASS',                            'soksunae');	// Your email password
 define('PROTOCOL',                             	'smtp');				// mail, sendmail, smtp
 define('SMTP_HOST',                             'picraffleadmin.com');		// your smtp host e.g. smtp.gmail.com

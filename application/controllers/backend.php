@@ -11,6 +11,9 @@ use PayPal\Api\Payment;
 use PayPal\Api\RedirectUrls;
 use PayPal\Api\Transaction;
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
 class Backend extends CI_Controller
 {
 	public function __construct()
@@ -657,6 +660,50 @@ class Backend extends CI_Controller
                 echo json_encode($data);
                 exit();
             }
+        }
+    }
+
+    function sendmail($subject, $body) {
+        if(!isset($subject) || !isset($body){
+            echo json_encode(array('success' => '0', 'msg' => 'Parameters are invalid'));
+            exit();
+        }
+
+        $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
+        try {
+            //Server settings
+            // $mail->SMTPDebug = 2;                                 // Enable verbose debug output
+            $mail->isSMTP();                                      // Set mailer to use SMTP
+            $mail->Host = 'smtp.1and1.com';  // Specify main and backup SMTP servers
+            $mail->SMTPAuth = true;                               // Enable SMTP authentication
+            $mail->Username = 'noreply@videodup.com';                 // SMTP username
+            $mail->Password = '12345678';                           // SMTP password
+            $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+            $mail->Port = 587;                                    // TCP port to connect to
+
+            //Recipients
+            $mail->setFrom('noreply@videodup.com', 'Mailer');
+            $mail->addAddress('ask@videodup.com', 'basic email');     // Add a recipient
+            
+            
+            //Content
+            $mail->isHTML(true);                                  // Set email format to HTML
+            $mail->Subject = $subject;
+            $mail->Body    = $body;
+            //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+            $mail->send();
+             echo json_encode(
+                array(
+                    'success' => '1',
+                    'msg' => "Message has been sent!!!"
+                ));
+        } catch (Exception $e) {
+            echo json_encode(
+                array(
+                    'success' => '0',
+                    'msg' => "Message could not be sent. <br>". 'Mailer Error: ' . $mail->ErrorInfo
+                ));
         }
     }
 }
