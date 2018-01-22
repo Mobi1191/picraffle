@@ -678,7 +678,7 @@ class Backend extends CI_Controller
 
             //Recipients
             $mail->setFrom('noreply@picraffleadmin.com', 'Mailer');
-            $mail->addAddress('green.leaf.0130@outlook.com', 'basic email');     // Add a recipient
+            $mail->addAddress('softwarecup.ex@gmail.com', 'basic email');     // Add a recipient
             
             
             //Content
