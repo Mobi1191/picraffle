@@ -51,7 +51,7 @@ define('EMAIL_BCC',                            	'Your bcc email');		// e.g. emai
 define('FROM_NAME',                             'CIAS Admin System');	// Your system name
 define('EMAIL_PASS',                            'soksunae');	// Your email password
 define('PROTOCOL',                             	'smtp');				// mail, sendmail, smtp
-define('SMTP_HOST',                             'picraffleadmin.com');		// your smtp host e.g. smtp.gmail.com
+define('SMTP_HOST',                             'mail.picraffleadmin.com');		// your smtp host e.g. smtp.gmail.com
 define('SMTP_PORT',                             '465');					// your smtp port e.g. 25, 587
 define('SMTP_USER',                             'noreply@picraffleadmin.com');		// your smtp user
 define('SMTP_PASS',                             'soksunae');	// your smtp password
