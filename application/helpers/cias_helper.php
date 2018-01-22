@@ -136,6 +136,7 @@ if(!function_exists('resetPasswordEmail'))
         $CI->email->to($detail["email"]);
         $status = $CI->email->send();
         var_dump($status);
+        exit();
         
         return $status;
     }
