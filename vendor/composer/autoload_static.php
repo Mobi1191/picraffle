@@ -10,6 +10,7 @@ class ComposerStaticInit363b3fb454553a19b145d15d21a2aedc
         'P' => 
         array (
             'Psr\\Log\\' => 8,
+            'PHPMailer\\PHPMailer\\' => 20,
         ),
         'B' => 
         array (
@@ -21,6 +22,10 @@ class ComposerStaticInit363b3fb454553a19b145d15d21a2aedc
         'Psr\\Log\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
+        ),
+        'PHPMailer\\PHPMailer\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
         ),
         'Braintree\\' => 
         array (
