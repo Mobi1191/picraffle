@@ -46,16 +46,16 @@ define('SEGMENT',								2);
 
 /************************** EMAIL CONSTANTS *****************************/
 
-define('EMAIL_FROM',                            'noreply@picraffleadmin.com');		// e.g. email@example.com
-define('EMAIL_BCC',                            	'Your bcc email');		// e.g. email@example.com
-define('FROM_NAME',                             'rubbystar');	// Your system name
-define('EMAIL_PASS',                            'soksunae');	// Your email password
+define('EMAIL_FROM',                            'noreply@videodup.com');		// e.g. email@example.com
+define('EMAIL_BCC',                            	'noreply@videodup.com');		// e.g. email@example.com
+define('FROM_NAME',                             'Picraffle');	// Your system name
+define('EMAIL_PASS',                            '12345678');	// Your email password
 define('PROTOCOL',                             	'smtp');				// mail, sendmail, smtp
-define('SMTP_HOST',                             'picraffleadmin.com');		// your smtp host e.g. smtp.gmail.com
-define('SMTP_PORT',                             '465');					// your smtp port e.g. 25, 587
-define('SMTP_USER',                             'noreply@picraffleadmin.com');		// your smtp user
-define('SMTP_PASS',                             'soksunae');	// your smtp password
-define('MAIL_PATH',                             FCPATH.'assets/sendmail');
+define('SMTP_HOST',                             'smtp.1and1.com');		// your smtp host e.g. smtp.gmail.com
+define('SMTP_PORT',                             587);					// your smtp port e.g. 25, 587
+define('SMTP_USER',                             'noreply@videodup.com');		// your smtp user
+define('SMTP_PASS',                             '12345678');	// your smtp password
+define('MAIL_PATH',                             '/usr/sbin/sendmail');
 
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */
